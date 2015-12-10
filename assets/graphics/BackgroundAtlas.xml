@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:08defc0cfad97f39e372e7a77f1ee5a8:83de3b965c41c869173e0532084ca958:e4250990697e928bf4ab9ab6ce2b4c97$ -->
+<TextureAtlas imagePath="BackgroundAtlas.png">
+    <SubTexture name="loading_background" x="2" y="2" width="1000" height="560"/>
+    <SubTexture name="menu_background" x="1004" y="2" width="1000" height="560"/>
+    <SubTexture name="menu_background_night" x="2" y="564" width="1000" height="560"/>
+    <SubTexture name="newspaper" x="1004" y="564" width="1000" height="560"/>
+    <SubTexture name="panel" x="2" y="1126" width="1000" height="560"/>
+    <SubTexture name="paper" x="2" y="1688" width="880" height="357"/>
+    <SubTexture name="parameter_background" x="1004" y="1126" width="1000" height="560"/>
+    <SubTexture name="preloading" x="1117" y="1688" width="582" height="286"/>
+    <SubTexture name="report_menu_background" x="884" y="1688" width="231" height="323"/>
+</TextureAtlas>

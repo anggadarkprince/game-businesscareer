@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:fbef8f9122dc5ed8f8360ee603b35abe:903a48149530f245f2fbf3e9b13ed9ff:4194e7a9df1aeecbf952241622df4558$ -->
+<TextureAtlas imagePath="DialogAtlas.png">
+    <SubTexture name="dialog_custom" x="1322" y="1423" width="554" height="389" frameX="-14" frameY="-10" frameWidth="585" frameHeight="432"/>
+    <SubTexture name="dialog_flat_small" x="2" y="612" width="603" height="607" frameX="-9" frameY="-9" frameWidth="625" frameHeight="629"/>
+    <SubTexture name="dialog_help" x="2" y="2" width="832" height="608" frameX="-15" frameY="-9" frameWidth="865" frameHeight="630"/>
+    <SubTexture name="dialog_material_detail" x="1044" y="552" width="418" height="490" frameX="-9" frameY="-9" frameWidth="440" frameHeight="512"/>
+    <SubTexture name="dialog_new_congratulation" x="607" y="612" width="435" height="516" frameX="-50" frameY="-36" frameWidth="536" frameHeight="597"/>
+    <SubTexture name="dialog_new_task" x="1464" y="584" width="422" height="445" frameX="-18" frameY="-13" frameWidth="458" frameHeight="478"/>
+    <SubTexture name="dialog_option" x="836" y="2" width="626" height="548" frameX="-16" frameY="-9" frameWidth="661" frameHeight="569"/>
+    <SubTexture name="dialog_pause" x="1464" y="2" width="473" height="580" frameX="-15" frameY="-9" frameWidth="507" frameHeight="601"/>
+    <SubTexture name="dialog_tips" x="637" y="1130" width="622" height="412" frameX="-10" frameY="-10" frameWidth="645" frameHeight="455"/>
+    <SubTexture name="dialog_train" x="2" y="1221" width="633" height="507" frameX="-9" frameY="-9" frameWidth="655" frameHeight="530"/>
+    <SubTexture name="notebook" x="1322" y="1044" width="656" height="377"/>
+    <SubTexture name="notebook_glass" x="637" y="1544" width="300" height="309"/>
+    <SubTexture name="small_panel" x="939" y="1544" width="381" height="304"/>
+</TextureAtlas>

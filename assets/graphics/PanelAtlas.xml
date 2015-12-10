@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:ec905bf5af6058d59fe46f3239ceaae5:6fd44bbbdeb517e42614fc2493103384:7c8c3e646a2ecf95f76ae4f8a4729eff$ -->
+<TextureAtlas imagePath="PanelAtlas.png">
+    <SubTexture name="credit_title" x="2" y="2" width="290" height="1298" frameX="-2" frameY="-8" frameWidth="299" frameHeight="1315"/>
+    <SubTexture name="dialog_asset_supplier" x="938" y="2" width="1058" height="628" frameX="-18" frameY="-10" frameWidth="1098" frameHeight="651"/>
+    <SubTexture name="dialog_booster" x="294" y="2" width="606" height="697" frameX="-9" frameY="-12" frameWidth="639" frameHeight="721"/>
+    <SubTexture name="dialog_inventory" x="2" y="1302" width="934" height="606" frameX="-19" frameY="-11" frameWidth="974" frameHeight="633"/>
+    <SubTexture name="dialog_material_supplier" x="938" y="1263" width="1023" height="619" frameX="-16" frameY="-12" frameWidth="1059" frameHeight="647"/>
+    <SubTexture name="dialog_posting" x="1296" y="632" width="692" height="522" frameX="-10" frameY="-9" frameWidth="716" frameHeight="564"/>
+    <SubTexture name="map" x="294" y="701" width="1000" height="560"/>
+</TextureAtlas>

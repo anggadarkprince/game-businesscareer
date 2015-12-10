@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:ae2cc0c7c1ef393008a6c9af6211efe0:864b6b2f5fcc8b17f4fc1878f38d2863:a3091eb4df799e53967be9863ce478d9$ -->
+<TextureAtlas imagePath="AdditionalAtlas.png">
+    <SubTexture name="backdrop" x="2" y="1052" width="1000" height="560"/>
+    <SubTexture name="customer_view_panel" x="1108" y="1519" width="651" height="469"/>
+    <SubTexture name="quick_help" x="1052" y="1041" width="912" height="476" frameX="-37" frameY="-34" frameWidth="1000" frameHeight="560"/>
+    <SubTexture name="sales_panel" x="555" y="1614" width="551" height="362"/>
+    <SubTexture name="setup_shop_panel" x="1052" y="514" width="921" height="525"/>
+    <SubTexture name="shop_background" x="1052" y="2" width="950" height="510"/>
+    <SubTexture name="starbrust" x="2" y="2" width="1048" height="1048"/>
+    <SubTexture name="trend_panel" x="2" y="1614" width="551" height="400"/>
+</TextureAtlas>

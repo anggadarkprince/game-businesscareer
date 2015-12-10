@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:98f96cada461b5d5d4681817e5f8fa62:20710666648b7bd4afc12a177d27a5d0:9c22bacf2df1bcabd0a9752fce59811a$ -->
+<TextureAtlas imagePath="HelpAtlas.png">
+    <SubTexture name="help_accounting" x="368" y="850" width="362" height="384"/>
+    <SubTexture name="help_cash" x="368" y="1236" width="363" height="351"/>
+    <SubTexture name="help_competitor" x="368" y="2" width="364" height="294"/>
+    <SubTexture name="help_customer" x="367" y="1589" width="363" height="324"/>
+    <SubTexture name="help_issues" x="2" y="1370" width="363" height="444"/>
+    <SubTexture name="help_supply" x="368" y="298" width="363" height="550"/>
+    <SubTexture name="help_welcome" x="2" y="2" width="364" height="1366"/>
+</TextureAtlas>
