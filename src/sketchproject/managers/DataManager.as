@@ -306,10 +306,18 @@ package sketchproject.managers
 					
 					avg += int(history[k].sim_work_hour);
 				}
-				Data.stress = history[history.length -1].sim_stress;
-				Data.work = history[history.length -1].sim_work_hour;
-				Data.workAvg = avg/history.length;
-				Data.workTotal = int(workTotal);
+				if(history.length > 0){
+					Data.stress = history[history.length -1].sim_stress;
+					Data.work = history[history.length -1].sim_work_hour;
+					Data.workAvg = avg/history.length;
+					Data.workTotal = int(workTotal);
+				}
+				else{
+					Data.stress = 0;
+					Data.work = 0;
+					Data.workAvg = 0;
+					Data.workTotal = 0;
+				}
 			}
 			
 			dispatchEvent(new Event(ServerManager.READY));

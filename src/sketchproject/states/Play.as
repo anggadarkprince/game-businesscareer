@@ -110,6 +110,36 @@ package sketchproject.states
 			screens = new Sprite();
 			addChild(screens);
 			
+			congratulation.x = stage.stageWidth * 0.5;
+			congratulation.y = stage.stageHeight * 0.5;
+			congratulation.name = "unlockAchievement";
+			congratulation.addEventListener(UnlockDialog.ACHIEVEMENT_UNLOCKED, function(event:Event):void{
+				unlockCheck();
+			});
+			Game.overlayStage.addChild(congratulation);
+			
+			complete.x = stage.stageWidth * 0.5;
+			complete.y = stage.stageHeight * 0.5;
+			complete.name = "taskComplete";
+			Game.overlayStage.addChild(complete);
+			
+			task.x = stage.stageWidth * 0.5;
+			task.y = stage.stageHeight * 0.5;
+			task.name = "newTask";
+			Game.overlayStage.addChild(task);
+			
+			dialogInfo.x = stage.stageWidth * 0.5;
+			dialogInfo.y = stage.stageHeight * 0.5;
+			dialogInfo.name = "info";
+			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void{dialogInfo.closeDialog()});
+			Game.overlayStage.addChild(dialogInfo);
+			
+			dialogPost = new PostDialog("Loan",0,false, false);
+			dialogPost.x = stage.stageWidth * 0.5;
+			dialogPost.y = stage.stageHeight * 0.5;
+			dialogPost.addEventListener(PostDialog.POSTING, recallPosting);
+			Game.overlayStage.addChild(dialogPost);
+			
 			hud = new GameMenu();
 			
 			hud.addEventListener(NavigationEvent.SWITCH, onTriggered);
@@ -216,36 +246,6 @@ package sketchproject.states
 				quickHelp.openDialog();
 				Assets.sfxChannel = Assets.sfxWelcome.play(0,0,Assets.sfxTransform);
 			}
-			
-			congratulation.x = stage.stageWidth * 0.5;
-			congratulation.y = stage.stageHeight * 0.5;
-			congratulation.name = "unlockAchievement";
-			congratulation.addEventListener(UnlockDialog.ACHIEVEMENT_UNLOCKED, function(event:Event):void{
-				unlockCheck();
-			});
-			Game.overlayStage.addChild(congratulation);
-						
-			complete.x = stage.stageWidth * 0.5;
-			complete.y = stage.stageHeight * 0.5;
-			complete.name = "taskComplete";
-			Game.overlayStage.addChild(complete);
-			
-			task.x = stage.stageWidth * 0.5;
-			task.y = stage.stageHeight * 0.5;
-			task.name = "newTask";
-			Game.overlayStage.addChild(task);
-						
-			dialogInfo.x = stage.stageWidth * 0.5;
-			dialogInfo.y = stage.stageHeight * 0.5;
-			dialogInfo.name = "info";
-			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void{dialogInfo.closeDialog()});
-			Game.overlayStage.addChild(dialogInfo);
-			
-			dialogPost = new PostDialog("Loan",0,false, false);
-			dialogPost.x = stage.stageWidth * 0.5;
-			dialogPost.y = stage.stageHeight * 0.5;
-			dialogPost.addEventListener(PostDialog.POSTING, recallPosting);
-			Game.overlayStage.addChild(dialogPost);
 									
 			taskManager = new TaskManager(hud);
 			

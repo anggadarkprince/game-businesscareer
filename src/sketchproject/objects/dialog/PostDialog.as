@@ -380,7 +380,7 @@ package sketchproject.objects.dialog
 				}
 			}		
 			else
-			{
+			{				
 				Game.overlayStage.swapChildren(dialogInfo, Game.overlayStage.getChildAt(Game.overlayStage.numChildren-1));
 				dialogInfo.dialogTitle = "Posting Failed";
 				dialogInfo.dialogMessage = "Check Debit and Credit Value";

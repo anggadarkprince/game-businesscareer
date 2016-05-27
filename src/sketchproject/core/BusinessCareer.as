@@ -16,7 +16,7 @@ package sketchproject.core
 		public function BusinessCareer() {
 			coreGame = new Starling(Game, stage);
 			coreGame.antiAliasing = 1;
-			//coreGame.showStats = true;
+			coreGame.showStats = true;
 			coreGame.start();
 			trace("[INIT] GAME FRAMEWORK START");			
 		}
