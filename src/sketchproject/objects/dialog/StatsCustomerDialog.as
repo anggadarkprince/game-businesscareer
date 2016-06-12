@@ -272,7 +272,7 @@ package sketchproject.objects.dialog
 			{
 				npc.removeFromParent(true);
 			}
-			npc = Agent(WorldManager.instance.listAgents[GameUtils.randomFor(WorldManager.instance.listAgents.length)-1]);
+			npc = Agent(WorldManager.instance.listAgent[GameUtils.randomFor(WorldManager.instance.listAgent.length)-1]);
 			npc.x = -300;
 			npc.y = -20;
 			npc.facing = "east";

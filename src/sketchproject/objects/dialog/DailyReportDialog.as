@@ -8,8 +8,8 @@ package sketchproject.objects.dialog
 	
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
-	import sketchproject.managers.CelebrateParticleManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.CelebrateManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.utilities.TableGenerator;
 	
 	import starling.core.Starling;
@@ -31,14 +31,14 @@ package sketchproject.objects.dialog
 		
 		private var buttonPost:Button;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var label:TextField;
 		private var revenue:TextField;
 		private var expense:TextField;
 		private var gross:TextField;
 		
-		private var celebrateManager:CelebrateParticleManager;
+		private var celebrateManager:CelebrateManager;
 		private var celebrateContainer:Sprite;
 
 		private var data:Array = [
@@ -91,7 +91,7 @@ package sketchproject.objects.dialog
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.stage.stageWidth * 2.5,Starling.current.stage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;
@@ -105,7 +105,7 @@ package sketchproject.objects.dialog
 			celebrateContainer.y = -Starling.current.nativeStage.stageHeight * 0.5;
 			addChild(celebrateContainer);
 			
-			celebrateManager = new CelebrateParticleManager(celebrateContainer);
+			celebrateManager = new CelebrateManager(celebrateContainer);
 			
 			dialogBase = new Image(Assets.getAtlas(Assets.DIALOG, Assets.DIALOG_XML).getTexture("notebook"));
 			dialogBase.pivotX = dialogBase.width * 0.5;

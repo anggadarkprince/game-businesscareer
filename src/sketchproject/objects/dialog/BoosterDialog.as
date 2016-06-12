@@ -8,7 +8,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
 	import sketchproject.interfaces.IDialog;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
 	import sketchproject.managers.ServerManager;
 	
@@ -27,7 +27,7 @@ package sketchproject.objects.dialog
 		private var labelImage:Image;
 		private var dialogTitle:TextField;
 		private var buttonPrimary:Button;
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 				
 		private var dialogTraining:NativeDialog;
 		private var dialogShop:NativeDialog;
@@ -60,7 +60,7 @@ package sketchproject.objects.dialog
 		
 		public function initObjectProperty():void
 		{
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			totalCost = 0;
 			

@@ -9,7 +9,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	
 	import starling.core.Starling;
@@ -34,7 +34,7 @@ package sketchproject.objects.dialog
 		private var game:Game;
 		private var option:OptionDialog;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		public function PauseDialog(game:Game, option:OptionDialog)
 		{
@@ -43,7 +43,7 @@ package sketchproject.objects.dialog
 			this.game = game;
 			this.option = option;
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			initObjectProperty();
 		}

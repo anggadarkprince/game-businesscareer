@@ -14,7 +14,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IDialog;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
 	import sketchproject.managers.ServerManager;
 	
@@ -53,7 +53,7 @@ package sketchproject.objects.dialog
 		public var isTask:Boolean;
 		public var isDestroyable:Boolean;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var listDebit:PickerList;
 		private var listCredit:PickerList;
@@ -70,7 +70,7 @@ package sketchproject.objects.dialog
 			
 			new MetalWorksDesktopTheme();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			this.type = type;
 			this.value = value;

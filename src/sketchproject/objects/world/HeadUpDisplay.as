@@ -6,7 +6,7 @@ package sketchproject.objects.world
 	import sketchproject.core.Game;
 	import sketchproject.events.NavigationEvent;
 	import sketchproject.events.ZoomEvent;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.utilities.ValueFormatter;
 	
 	import starling.display.Button;
@@ -47,13 +47,13 @@ package sketchproject.objects.world
 		
 		protected var cart:MobileCart;
 		
-		protected var fireworkManager:FireworkParticleManager;
+		protected var fireworkManager:FireworkManager;
 		
 		public function HeadUpDisplay()
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			hudContainer = new Sprite();
 			zoomContainer = new Sprite();

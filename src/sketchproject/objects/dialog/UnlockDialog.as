@@ -9,8 +9,8 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IDialog;
-	import sketchproject.managers.CelebrateParticleManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.CelebrateManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
 	import sketchproject.managers.ServerManager;
 	
@@ -34,10 +34,10 @@ package sketchproject.objects.dialog
 		private var info:TextField;
 		private var buttonOK:Button;
 		
-		private var celebrateManager:CelebrateParticleManager;
+		private var celebrateManager:CelebrateManager;
 		private var celebrateContainer:Sprite;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var fireworksTimer:Timer;
 		
@@ -49,7 +49,7 @@ package sketchproject.objects.dialog
 		{
 			super();
 						
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			gemManager = new RewardManager(RewardManager.REWARD_GEM, RewardManager.SPAWN_AVERAGE);
 			
@@ -65,7 +65,7 @@ package sketchproject.objects.dialog
 			celebrateContainer.y = -Starling.current.nativeStage.stageHeight * 0.5;
 			addChild(celebrateContainer);
 			
-			celebrateManager = new CelebrateParticleManager(celebrateContainer);
+			celebrateManager = new CelebrateManager(celebrateContainer);
 			
 			dialogBase = new Image(Assets.getAtlas(Assets.DIALOG, Assets.DIALOG_XML).getTexture("dialog_new_congratulation"));
 			dialogBase.pivotX = dialogBase.width * 0.5;

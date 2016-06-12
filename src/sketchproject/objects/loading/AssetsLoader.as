@@ -6,7 +6,7 @@ package sketchproject.objects.loading
 	import com.greensock.easing.Elastic;
 	
 	import sketchproject.core.Assets;
-	import sketchproject.managers.HazeParticleManager;
+	import sketchproject.managers.HazeManager;
 	
 	import starling.display.Image;
 	import starling.display.Quad;
@@ -26,7 +26,7 @@ package sketchproject.objects.loading
 		private var screenCharRight:Image;
 		private var gameLogo:Image;
 		
-		private var hazeManager:HazeParticleManager;
+		private var hazeManager:HazeManager;
 		private var hazeContainer:Sprite;
 		
 		private var loadingProgress:Sprite;
@@ -153,7 +153,7 @@ package sketchproject.objects.loading
 				["Prepare Menu Action", "Server Route Script", "Rule Based Game", "Pooling Object Script", "Blitting Image", "Particle Generator"]
 			];
 			
-			hazeManager = new HazeParticleManager(hazeContainer);
+			hazeManager = new HazeManager(hazeContainer);
 		}
 				
 		/**

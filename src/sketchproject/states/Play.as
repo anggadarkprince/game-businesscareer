@@ -9,7 +9,7 @@ package sketchproject.states
 	import sketchproject.events.ZoomEvent;
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.DataManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.managers.TaskManager;
 	import sketchproject.objects.QuickHelp;
@@ -45,7 +45,7 @@ package sketchproject.states
 	public class Play extends Sprite implements IState
 	{
 		private var game:Game;
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		// layers
 		private var hud:GameMenu;
@@ -103,7 +103,7 @@ package sketchproject.states
 		
 		public function initialize():void
 		{			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			save = new DataManager();
 			

@@ -30,7 +30,7 @@ package sketchproject.states
 		public function initialize():void
 		{
 			delay = 0;
-			loading = new TransitionScreen(TransitionScreen.SERVER_PROGRESS,"STATE CHANGED","TAKE A VIEW SECONDS");
+			loading = new TransitionScreen(TransitionScreen.SERVER_PROGRESS,"STATE CHANGED","PLEASE WAIT");
 			addChild(loading);
 		}
 		
@@ -50,7 +50,7 @@ package sketchproject.states
 		
 		public function toString() : String 
 		{
-			return "sketchproject.modules.states.VacationState";
+			return "sketchproject.states.LoadingTransitionState";
 		}
 	}
 }

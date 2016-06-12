@@ -12,7 +12,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IDialog;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.objects.adapter.LeaderboardAdapter;
 	import sketchproject.utilities.ValueFormatter;
@@ -34,7 +34,7 @@ package sketchproject.objects.dialog
 		private var dialogBase:Image;
 		private var dialogTitle:Image;
 		private var buttonClose:Button;
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		private var titleDialog:TextField;
 		
 		private var textMyScore:TextField;
@@ -61,7 +61,7 @@ package sketchproject.objects.dialog
 		
 		public function initObjectProperty():void
 		{
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 						
 			loader = new Loader();
 			loader.contentLoaderInfo.addEventListener ( flash.events.Event.COMPLETE, onComplete );

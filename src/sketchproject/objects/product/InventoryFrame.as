@@ -6,7 +6,7 @@ package sketchproject.objects.product
 	import sketchproject.core.Assets;
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.objects.dialog.PostDialog;
 	import sketchproject.objects.product.inventory.InventoryAssets;
 	import sketchproject.objects.product.inventory.InventoryMaterial;
@@ -48,13 +48,13 @@ package sketchproject.objects.product
 		private var upgradeFrame:InventoryUpgrade;
 		private var assetsFrame:InventoryAssets;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		public function InventoryFrame()
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.stage.stageWidth * 2.5,Starling.current.stage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;

@@ -11,6 +11,11 @@ package sketchproject.core
 	import starling.events.Event;
 	import starling.events.EventDispatcher;
 
+	/**
+	 * Load XML data.
+	 *
+	 * @author Angga
+	 */
 	public class DataLoader extends EventDispatcher
 	{
 		public static const DATA_LOADED:String 	= "dataLoaded";
@@ -25,11 +30,17 @@ package sketchproject.core
 		private var advertisementLoaded:Boolean = false;
 		private var gameData:Boolean 			= false;
 		
+		/**
+		 * Default constructor of DataLoader
+		 */
 		public function DataLoader()
 		{
 			
 		}
 		
+		/**
+		 * Load game data
+		 */
 		public function loadData():void
 		{
 			var server:DataManager = new DataManager();
@@ -41,6 +52,9 @@ package sketchproject.core
 			gameDataLoaded();
 		}
 		
+		/**
+		 * Load isometric XML
+		 */
 		public function loadMapData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -62,6 +76,9 @@ package sketchproject.core
 			gameDataLoaded();
 		}
 		
+		/**
+		 * Load weather XML
+		 */
 		public function loadWeatherData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -93,6 +110,9 @@ package sketchproject.core
 		}
 		
 		
+		/**
+		 * Load event XML data
+		 */
 		public function loadEventData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -135,7 +155,9 @@ package sketchproject.core
 		}
 		
 		
-		
+		/**
+		 * Load tips XML data
+		 */
 		public function loadTipsData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -164,7 +186,9 @@ package sketchproject.core
 		}
 		
 		
-		
+		/**
+		 * Load district XML data.
+		 */
 		public function loadDistrict():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -212,7 +236,9 @@ package sketchproject.core
 			gameDataLoaded();
 		}
 		
-		
+		/**
+		 * Load research XML data.
+		 */
 		public function loadResearchData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -243,7 +269,9 @@ package sketchproject.core
 		}
 		
 		
-		
+		/**
+		 * load transaction XML data.
+		 */
 		public function loadTransactionData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -274,7 +302,9 @@ package sketchproject.core
 			gameDataLoaded();
 		}
 		
-		
+		/**
+		 * Load advertisement XML data.
+		 */
 		public function loadAdvertisementData():void
 		{
 			var xmlLoader:URLLoader = new URLLoader();
@@ -309,6 +339,9 @@ package sketchproject.core
 			gameDataLoaded();
 		}
 		
+		/**
+		 * Check if all data has been loaded.
+		 */
 		private function gameDataLoaded():void
 		{
 			if(mapLoaded && weatherLoaded && eventLoaded && tipsLoaded && districtLoaded && eventLoaded && transactionLoaded && advertisementLoaded && gameData)

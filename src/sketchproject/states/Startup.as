@@ -9,7 +9,7 @@ package sketchproject.states
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.DataManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.modules.EventFactory;
 	import sketchproject.objects.Tooltips;
@@ -63,7 +63,7 @@ package sketchproject.states
 		private var labelTarget:Image;
 		private var labelFinancial:Image;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var showTips:Tooltips;
 		
@@ -97,7 +97,7 @@ package sketchproject.states
 		 */
 		public function initialize():void
 		{			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 
 			showTips = new Tooltips();
 			showTips.tipsDirection(Tooltips.TIPS_LEFT);

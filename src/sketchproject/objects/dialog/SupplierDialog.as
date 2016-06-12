@@ -10,7 +10,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.objects.adapter.SupplyAdapter;
 	import sketchproject.objects.adapter.UpgradeAdapter;
@@ -38,7 +38,7 @@ package sketchproject.objects.dialog
 		
 		private var dataMarket:Object;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		private var itemContainer:Sprite;
 		
 		private var currentPage:int;
@@ -74,7 +74,7 @@ package sketchproject.objects.dialog
 			
 			totalInventoryBought = 0;
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.stage.stageWidth * 2.5,Starling.current.stage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;

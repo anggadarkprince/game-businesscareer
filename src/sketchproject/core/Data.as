@@ -104,8 +104,7 @@ package sketchproject.core
 		public static var asset:Array = new Array();
 		
 		/** material product **/
-		public static var productInventory:Array = new Array();
-				
+		public static var productInventory:Array = new Array();				
 		
 	}
 }

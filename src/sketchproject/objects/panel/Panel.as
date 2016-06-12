@@ -6,7 +6,7 @@ package sketchproject.objects.panel
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IDialog;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -27,13 +27,13 @@ package sketchproject.objects.panel
 		private var dialogTitle:Image;
 		private var dialogSubtitle:TextField;
 		private var buttonClose:Button;
-		protected var fireworkManager:FireworkParticleManager;
+		protected var fireworkManager:FireworkManager;
 		
 		public function Panel(iconTexture:Texture, titleTexture:Texture, subtitle:String)
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.nativeStage.stageWidth * 2.5,Starling.current.nativeStage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;

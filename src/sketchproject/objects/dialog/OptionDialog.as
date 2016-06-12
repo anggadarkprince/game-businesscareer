@@ -11,7 +11,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Assets;
 	import sketchproject.core.Config;
 	import sketchproject.core.Game;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.objects.Tooltips;
 	
 	import starling.core.Starling;
@@ -59,7 +59,7 @@ package sketchproject.objects.dialog
 		private var sfxVolumeBar:Sprite;
 		private var bgmVolumeBar:Sprite;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var showTips:Tooltips;
 		
@@ -67,7 +67,7 @@ package sketchproject.objects.dialog
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			showTips = new Tooltips();
 			showTips.tipsDirection(Tooltips.TIPS_LEFT);

@@ -2,7 +2,7 @@ package sketchproject.screens
 {
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -13,13 +13,13 @@ package sketchproject.screens
 		protected var baseScreen:Image;
 		protected var topScreen:Image;
 		protected var buttonContainer:Sprite;
-		protected var fireworkManager:FireworkParticleManager;
+		protected var fireworkManager:FireworkManager;
 		
 		public function GameScreen()
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			containerScreen = new Sprite();
 			

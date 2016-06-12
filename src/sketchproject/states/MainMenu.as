@@ -15,7 +15,7 @@ package sketchproject.states
 	import sketchproject.events.DialogBoxEvent;
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.DataManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RainManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.objects.Tooltips;
@@ -57,7 +57,7 @@ package sketchproject.states
 		private var dialogHelp:HelpDialog;
 		private var dialogExitConfirm:NativeDialog;
 		
-		private var fireworkManager:FireworkParticleManager;		
+		private var fireworkManager:FireworkManager;		
 		private var request:URLRequest;
 		
 		private var timerFireworks:Timer;
@@ -93,7 +93,7 @@ package sketchproject.states
 		{
 			timerFireworks = new Timer(1000);
 			
-			fireworkManager = FireworkParticleManager.getInstance(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 			
 			showTips = Tooltips.getInstance();
 			showTips.tipsDirection(Tooltips.TIPS_LEFT);

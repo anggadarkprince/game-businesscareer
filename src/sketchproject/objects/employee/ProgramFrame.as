@@ -7,7 +7,7 @@ package sketchproject.objects.employee
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.managers.DataManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.utilities.ValueFormatter;
 	
 	import starling.display.Button;
@@ -23,7 +23,7 @@ package sketchproject.objects.employee
 		private var background:Image;
 		private var buttonOffer:Button;
 		private var label:TextField;
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var baseAmount:TextField;
 		private var costEmployee:TextField;
@@ -55,7 +55,7 @@ package sketchproject.objects.employee
 			
 			programList = new Array();
 						
-			fireworkManager = FireworkParticleManager.getInstance(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 			
 			background = new Image(Assets.getAtlas(Assets.BACKGROUND, Assets.BACKGROUND_XML).getTexture("paper"));
 			background.pivotX = background.width * 0.5;

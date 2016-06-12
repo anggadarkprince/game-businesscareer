@@ -7,7 +7,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
 	
 	import starling.core.Starling;
@@ -33,7 +33,7 @@ package sketchproject.objects.dialog
 		private var buttonTrainMorale:Button;
 		private var buttonTrainProductivity:Button;
 		private var buttonTrainServices:Button;
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var moraleContainer:Sprite;
 		private var productivityContainer:Sprite;
@@ -57,7 +57,7 @@ package sketchproject.objects.dialog
 			
 			gemManager = new RewardManager(RewardManager.REWARD_GEM, RewardManager.SPAWN_HIGH);
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.nativeStage.stageWidth * 2.5,Starling.current.nativeStage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;

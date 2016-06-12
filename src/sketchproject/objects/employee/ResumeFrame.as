@@ -13,7 +13,7 @@ package sketchproject.objects.employee
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.objects.adapter.EmployeeAdapter;
@@ -53,7 +53,7 @@ package sketchproject.objects.employee
 		private var dialogConfirm:NativeDialog;
 		private var dialogInfo:NativeDialog;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var currentCandidate:EmployeeAdapter;		
 		private var server:Object;
@@ -66,7 +66,7 @@ package sketchproject.objects.employee
 			
 			gemManager = new RewardManager(RewardManager.REWARD_GEM, RewardManager.SPAWN_AVERAGE);
 			
-			fireworkManager = FireworkParticleManager.getInstance(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 			
 			background = new Image(Assets.getAtlas(Assets.BACKGROUND, Assets.BACKGROUND_XML).getTexture("paper"));
 			background.pivotX = background.width * 0.5;

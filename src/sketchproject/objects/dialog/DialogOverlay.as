@@ -5,7 +5,7 @@ package sketchproject.objects.dialog
 	
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	
 	import starling.core.Starling;
 	import starling.display.Quad;
@@ -15,7 +15,7 @@ package sketchproject.objects.dialog
 	{
 		protected var overlay:Quad;
 		protected var isDestroyable:Boolean;
-		protected var fireworkManager:FireworkParticleManager;
+		protected var fireworkManager:FireworkManager;
 		
 		public function DialogOverlay(destroyable:Boolean)
 		{
@@ -23,7 +23,7 @@ package sketchproject.objects.dialog
 			
 			isDestroyable = destroyable;
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.nativeStage.stageWidth * 2.5,Starling.current.nativeStage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;

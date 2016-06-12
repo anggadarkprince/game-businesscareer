@@ -7,7 +7,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
 	import sketchproject.interfaces.IDialog;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -30,13 +30,13 @@ package sketchproject.objects.dialog
 		private var textTitle:TextField;
 		private var textMessage:TextField;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		public function NativeDialog(type:String = DIALOG_INFORMATION, title:String = "No Title", message:String = "No Message")
 		{
 			super();
 			
-			fireworkManager = FireworkParticleManager.getInstance(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 			
 			overlay = new Quad(Starling.current.nativeStage.stageWidth * 2.5,Starling.current.nativeStage.stageHeight * 2.5);
 			overlay.pivotX = overlay.width * 0.5;

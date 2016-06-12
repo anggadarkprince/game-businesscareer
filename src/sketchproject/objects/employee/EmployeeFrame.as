@@ -11,7 +11,7 @@ package sketchproject.objects.employee
 	import sketchproject.core.Game;
 	import sketchproject.events.DialogBoxEvent;
 	import sketchproject.managers.DataManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.objects.adapter.EmployeeAdapter;
 	import sketchproject.objects.dialog.EmployeeTrainingDialog;
@@ -59,7 +59,7 @@ package sketchproject.objects.employee
 		private var dialogConfirm:NativeDialog;
 		private var dialogInfo:NativeDialog;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var currentEmployee:EmployeeAdapter;
 		
@@ -73,7 +73,7 @@ package sketchproject.objects.employee
 		{
 			super();
 			
-			fireworkManager = FireworkParticleManager.getInstance(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 			
 			save = new DataManager();
 			

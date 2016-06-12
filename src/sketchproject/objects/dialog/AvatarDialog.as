@@ -7,7 +7,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.managers.DataManager;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.objects.world.AvatarController;
 	
 	import starling.core.Starling;
@@ -27,7 +27,7 @@ package sketchproject.objects.dialog
 		
 		private var buttonConfirm:Button;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		private var labelAvatarDesign:TextField;
 		
@@ -37,7 +37,7 @@ package sketchproject.objects.dialog
 		{
 			super();
 									
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			server = new DataManager();
 			

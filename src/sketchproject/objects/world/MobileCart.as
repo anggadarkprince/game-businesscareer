@@ -11,7 +11,7 @@ package sketchproject.objects.world
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	import sketchproject.objects.dialog.TipsDialog;
 	import sketchproject.utilities.DayCounter;
 	import sketchproject.utilities.ValueFormatter;
@@ -56,14 +56,14 @@ package sketchproject.objects.world
 		private var showTips:Tooltips;
 		
 		private var myTimer:Timer = new Timer(20000);
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		
 		public function MobileCart()
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			showTips = Tooltips(Game.overlayStage.getChildByName("tooltips"));
 			

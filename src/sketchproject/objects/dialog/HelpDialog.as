@@ -7,7 +7,7 @@ package sketchproject.objects.dialog
 	
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
-	import sketchproject.managers.FireworkParticleManager;
+	import sketchproject.managers.FireworkManager;
 	
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -44,13 +44,13 @@ package sketchproject.objects.dialog
 		
 		private var mask:Sprite;
 		
-		private var fireworkManager:FireworkParticleManager;
+		private var fireworkManager:FireworkManager;
 		
 		public function HelpDialog()
 		{
 			super();
 			
-			fireworkManager = new FireworkParticleManager(Game.overlayStage);
+			fireworkManager = new FireworkManager(Game.overlayStage);
 			
 			pageActive = 1;
 			
