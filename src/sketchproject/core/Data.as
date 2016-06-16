@@ -44,7 +44,7 @@ package sketchproject.core
 		public static var salesTotal:Number 		= 0;
 		public static var research:Array 			= [0,0,0,0,0];
 		public static var program:Array 			= [0,0,0,0,0,0,0,0,0];
-		public static var advertising:Array			= [["1","NONE","NONE"],["2","NONE","NONE"],["3","NONE","NONE"],["4","NONE","NONE"],["5","NONE","NONE"],["6","NONE","NONE"]];
+		public static var advertising:Array			= [[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]];
 		
 		/** parameter **/
 		public static var valuePopulation:int 		= 200;

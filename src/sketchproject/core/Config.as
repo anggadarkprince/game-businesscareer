@@ -37,15 +37,6 @@ package sketchproject.core
 		 * **/
 
 		/**
-		 * XML tips of the day
-		 * item.attribute("id"),
-		 * item.title,
-		 * item.content
-		 * **/
-		public static var tipsOfTheDay:Array = new Array();
-
-
-		/**
 		 * XML weather
 		 * item.attribute("id"),
 		 * item.name,
@@ -79,20 +70,15 @@ package sketchproject.core
 		 * **/
 		public static var event:Array = new Array();
 
-
 		/**
-		 * XML transaction
+		 * XML tips of the day
 		 * item.attribute("id"),
-		 * item.type,
-		 * item.name,
-		 * item.hint,
-		 * item.debit,
-		 * item.credit,
-		 * item.description,
+		 * item.title,
+		 * item.content
 		 * **/
-		public static var transaction:Array = new Array();
-
-
+		public static var tipsOfTheDay:Array = new Array();
+		
+		
 		/**
 		 * XML district
 		 * item.attribute("id"),
@@ -115,9 +101,20 @@ package sketchproject.core
 		 * **/
 		public static var district:Array = new Array();
 
-		/** location district for select **/
+		
+		/** location district for select drop down **/
 		public static var location:Array = new Array();
 
+		
+		/**
+		 * XML research
+		 * item.attribute("id"),
+		 * item.name,
+		 * item.cost
+		 * **/
+		public static var research:Array = new Array();
+		
+		
 		/**
 		 * XML advertisement
 		 * item.attribute("id"),
@@ -132,18 +129,20 @@ package sketchproject.core
 		 * **/
 		public static var advertisement:Array = new Array();
 
-
+		
 		/**
-		 * XML research
+		 * XML transaction
 		 * item.attribute("id"),
+		 * item.type,
 		 * item.name,
-		 * item.cost
+		 * item.hint,
+		 * item.debit,
+		 * item.credit,
+		 * item.description
 		 * **/
-		public static var research:Array = new Array();
+		public static var transaction:Array = new Array();
 
-
-
-
+		
 		/**
 		 * retirieve data from database
 		 * move to temporary static variables
