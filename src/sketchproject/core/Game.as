@@ -100,13 +100,13 @@ package sketchproject.core
 			data = new DataLoader();
 			data.addEventListener(DataLoader.DATA_LOADED, onGameDataLoaded);
 			data.loadMapData();
-			data.loadAdvertisementData();
 			data.loadDistrict();
 			data.loadEventData();
 			data.loadResearchData();
 			data.loadTipsData();
 			data.loadTransactionData();
 			data.loadWeatherData();
+			data.loadAdvertisementData();
 			data.loadData();
 		}
 

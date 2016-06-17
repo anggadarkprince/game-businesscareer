@@ -1,17 +1,21 @@
 package sketchproject.objects.particle
 {
 	import sketchproject.core.Assets;
-		
+
 	import starling.display.Image;
 	import starling.display.Sprite;
-	
+
+	/**
+	 * Haze sprite particle, contains information position and texture.
+	 * @author Angga
+	 */
 	public class HazeParticle extends Sprite
 	{
 		private var haze:Image;
 		private var position:Number;
-		
+
 		/**
-		 * Haze particle sprite contructor
+		 * Default constructor of HazeParticle
 		 */
 		public function HazeParticle()
 		{
@@ -21,27 +25,31 @@ package sketchproject.objects.particle
 			this.alpha = 0;
 			this.scaleX = 0.1;
 			this.scaleY = 0.1;
-			
-			haze = new Image(Assets.getAtlas(Assets.CONTENT,Assets.CONTENT_XML).getTexture("haze"));
+
+			haze = new Image(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("haze"));
 			haze.pivotX = haze.width * 0.5;
 			haze.pivotY = haze.height * 0.5;
 			addChild(haze);
 		}
-		
+
 		/**
-		 * Setter haze y position
-		 * @params $percent game loading precentage
+		 * Setter start haze y position.
+		 * 
+		 * @params posY default location where haze spawned
 		 * @return void
 		 */
-		public function set startPositionHaze(posY:Number):void	{
+		public function set startPositionHaze(posY:Number):void
+		{
 			this.position = posY;
 		}
-		
+
 		/**
-		 * Getter haze y position
+		 * Getter start haze y position.
+		 * 
 		 * @return Number y position
 		 */
-		public function get startPositionHaze():Number {
+		public function get startPositionHaze():Number
+		{
 			return this.position;
 		}
 	}

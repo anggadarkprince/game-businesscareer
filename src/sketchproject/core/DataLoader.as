@@ -1,13 +1,14 @@
 package sketchproject.core
 {
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-
+	
 	import sketchproject.managers.DataManager;
 	import sketchproject.managers.ServerManager;
-
+	
 	import starling.events.Event;
 	import starling.events.EventDispatcher;
 
@@ -61,6 +62,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingMapData);
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/graphics/IsometricAtlas.xml"));
 		}
 
@@ -95,7 +99,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingWeatherData);
-
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/weather.xml"));
 		}
 
@@ -135,7 +141,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingEventData);
-
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/event.xml"));
 		}
 
@@ -186,7 +194,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingTipsData);
-
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/tipsoftheday.xml"));
 		}
 
@@ -223,7 +233,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingDistrictData);
-
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/district.xml"));
 		}
 
@@ -279,7 +291,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingResearchData);
-
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/research.xml"));
 		}
 
@@ -318,7 +332,9 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingTransactionData);
-
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
 			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/transaction.xml"));
 		}
 
@@ -357,8 +373,10 @@ package sketchproject.core
 		{
 			var xmlLoader:URLLoader = new URLLoader();
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE, initializingAdvertisementData);
-
-			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/advertisement.xml"));
+			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void{
+				trace("XML error : " + event.toString());
+			});
+			xmlLoader.load(new URLRequest(ServerManager.SERVER_HOST + "game/assets/data/ads.xml"));		
 		}
 
 		/**

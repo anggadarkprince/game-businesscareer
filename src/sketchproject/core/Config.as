@@ -149,7 +149,7 @@ package sketchproject.core
 		 * master data that user cant change, just view and retrieve
 		 * **/
 
-		/** account master for select **/
+		/** account master for select drop down **/
 		public static var account:Array = new Array();
 
 		/** material master **/
@@ -168,12 +168,6 @@ package sketchproject.core
 		public static var achieved:Array = new Array();
 
 
-
-		/**
-		 * daily information
-		 *
-		 * **/
-
 		/** initial/list pending transaction **/
 		public static var transactionList:Array = new Array();
 
@@ -183,8 +177,7 @@ package sketchproject.core
 		/** marketshare information **/
 		public static var marketShare:Array = [[35, 0xff5053, "Player"], [45, 0x06cffd, "Shop 1"], [20, 0x96ce00, "Shop 2"]];
 
-
-
+		
 		/** district coordinate **/
 		public static var airportCoordinate:Array = [{"x": 1, "y": 19}, {"x": 2, "y": 19}, {"x": 3, "y": 19}, {"x": 4, "y": 19}, {"x": 5, "y": 19}, {"x": 5, "y": 18}, {"x": 5, "y": 17}, {"x": 5, "y": 16}, {"x": 5, "y": 15}, {"x": 5, "y": 14}, {"x": 5, "y": 13}];
 		public static var schoolCoordinate:Array = [{"x": 1, "y": 12}, {"x": 2, "y": 12}, {"x": 3, "y": 12}, {"x": 4, "y": 12}, {"x": 5, "y": 11}, {"x": 5, "y": 11}, {"x": 5, "y": 10}, {"x": 5, "y": 8}, {"x": 5, "y": 7}];

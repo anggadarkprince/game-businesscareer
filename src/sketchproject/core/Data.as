@@ -1,5 +1,10 @@
 package sketchproject.core
 {
+	/**
+	 * Class handle game data of player.
+	 * 
+	 * @author Angga
+	 */
 	public class Data
 	{
 		/** player data **/
@@ -8,7 +13,6 @@ package sketchproject.core
 		public static var name:String 				= "Vierpiers Mist";
 		public static var nickname:String 			= "Priest";
 		public static var username:String 			= "slasher15";
-		
 		
 		/** game data **/
 		public static var playtime:int				= 1;
@@ -60,13 +64,15 @@ package sketchproject.core
 		public static var stress:int 				= 10;
 		public static var stressHistory:Array 		= new Array();
 		public static var work:int 					= 0;
-		public static var workAvg:int 				= 9;
+		public static var workAvg:int 				= 0;
 		public static var workTotal:int 			= 0;
 		public static var workHistory:Array			= new Array();
 		
+		/** cost of good */
 		public static var firstCostOfGood:Number 	= 0;
 		public static var lastCostOfGood:Number 	= 0;
 		
+		/** performance for achievement evaluation */
 		public static var locationHistory:Array		= new Array();
 		public static var inventoryHistory:Array	= new Array();
 		public static var customerHistory:Array		= new Array();
@@ -77,34 +83,34 @@ package sketchproject.core
 		public static var isFailAnswer:Boolean		= false;
 		public static var correctHistory:Array		= new Array();
 		
+		/** simulation statistic */
 		public static var simulation:Array			= new Array();
 		
+		/** promotion */
 		public static var programCost:Number		= 0;
 		public static var researchCost:Number		= 0;
 		public static var advertisingCost:Array		= new Array();
 		
+		/** business discount status */
 		public static var discountFirst:int			= 0;
 		public static var discountLast:int			= 0;
 		
-		
-		
 		/** player achieved **/
-		public static var achievement:Array = new Array();
+		public static var achievement:Array 		= new Array();
 							
 		/** player employee **/
-		public static var employee:Array = new Array();
+		public static var employee:Array 			= new Array();
 		
 		/** player product **/
-		public static var product:Array = new Array();
+		public static var product:Array 			= new Array();
 		
 		/** player inventory **/
-		public static var inventory:Array = new Array();
+		public static var inventory:Array 			= new Array();
 		
 		/** player asset **/
-		public static var asset:Array = new Array();
+		public static var asset:Array 				= new Array();
 		
 		/** material product **/
-		public static var productInventory:Array = new Array();				
-		
+		public static var productInventory:Array 	= new Array();
 	}
 }

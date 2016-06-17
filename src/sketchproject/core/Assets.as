@@ -108,6 +108,10 @@ package sketchproject.core
 		public static const TextureAdditional:Class;
 		[Embed(source = "../../../assets/graphics/AdditionalAtlas.xml", mimeType = "application/octet-stream")]
 		public static const XMLAdditional:Class;
+		
+		// game world image
+		[Embed(source="../../../assets/graphics/world.png")]
+		private static var GameWorld:Class;
 
 
 		// fireworks spritesheet
