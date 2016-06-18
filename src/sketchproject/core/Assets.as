@@ -6,9 +6,9 @@ package sketchproject.core
 	import flash.media.SoundTransform;
 	import flash.text.Font;
 	import flash.utils.Dictionary;
-
+	
 	import sketchproject.objects.dialog.OptionDialog;
-
+	
 	import starling.text.BitmapFont;
 	import starling.text.TextField;
 	import starling.textures.Texture;

@@ -87,6 +87,8 @@ package sketchproject.objects.world
 		public var isEventExist:Boolean;
 		public var hour:int;
 		public var minute:int;
+		
+		private var isSimulation:Boolean;
 
 		/**
 		 * Default constructor of Map.
@@ -96,6 +98,8 @@ package sketchproject.objects.world
 		public function Map(isSimulationStarted:Boolean = true)
 		{
 			super();
+			
+			isSimulation = isSimulationStarted;
 
 			levelWorld = new Sprite();
 			addChild(levelWorld);
@@ -190,6 +194,10 @@ package sketchproject.objects.world
 				addShopLabel("Your Shop", worldManager.listShop[0].districtCoordinate, 200, 50);
 				addShopLabel("Competitor Shop 1", worldManager.listShop[1].districtCoordinate, 200, 100);
 				addShopLabel("Competitor Shop 2", worldManager.listShop[2].districtCoordinate, 200, 100);
+			}
+			else {
+				radiance.visible = false;
+				atmosphere.visible = false;
 			}
 			
 			levelBackground.addEventListener(TouchEvent.TOUCH, onWorldTouched);
@@ -430,9 +438,10 @@ package sketchproject.objects.world
 			// update main simulation
 			worldManager.update();
 			
-			
-			checkRadianceAtmosphere(hour);
-			checkEventOperation(hour);
+			if(isSimulation){
+				checkRadianceAtmosphere(hour);
+				checkEventOperation(hour);
+			}
 
 			if (int(Data.weather[0][0]) <= 3)
 			{

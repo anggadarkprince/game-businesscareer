@@ -1,8 +1,8 @@
 package sketchproject.objects.panel
 {
 	import sketchproject.core.Assets;
-	import sketchproject.objects.adapter.EmotionAdapter;
 	import sketchproject.core.Config;
+	import sketchproject.objects.adapter.EmotionAdapter;
 	
 	import starling.display.Image;
 	import starling.display.Quad;
@@ -96,7 +96,11 @@ package sketchproject.objects.panel
 			emotionList.addChild(bar);
 			
 			for(var j:int = 0; j<Config.marketShare.length; j++){
-				bar = new Quad(50,200/100*Config.marketShare[j][0],Config.marketShare[j][1]);
+				var barHeight:Number = 1;
+				if(Config.marketShare[j][0] > 0){
+					barHeight = 200/100*Config.marketShare[j][0];
+				}
+				bar = new Quad(50,barHeight,Config.marketShare[j][1]);
 				bar.x = j * 70 + 410;
 				bar.y = 200 - bar.height;
 				emotionList.addChild(bar);

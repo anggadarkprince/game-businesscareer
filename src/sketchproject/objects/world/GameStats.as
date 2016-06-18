@@ -8,7 +8,7 @@ package sketchproject.objects.world
 	import sketchproject.objects.dialog.StatsShopDialog;
 	import sketchproject.objects.dialog.StatsTrendDialog;
 	import sketchproject.utilities.DayCounter;
-	
+
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -21,17 +21,33 @@ package sketchproject.objects.world
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 
+	/**
+	 * 
+	 * @author Angga
+	 */
 	public class GameStats extends HeadUpDisplay
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const SHOP_OPEN:String = "shopOpen";
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const SHOP_CLOSE:String = "shopClose";
-			
+
 		private var statsSales:StatsSalesDialog;
 		private var statsCustomer:StatsCustomerDialog;
 		private var statsShop:StatsShopDialog;
 		private var statsTrend:StatsTrendDialog;
-		
+
 		private var statsContainer:Sprite;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var clock:Clock;
 		private var statsBackground:Image;
 		private var buttonShop:Button;
@@ -43,26 +59,26 @@ package sketchproject.objects.world
 		private var day:TextField;
 		private var event:TextField;
 		private var district:TextField;
-		
+
 		private var line:Quad;
 		private var weatherContainer:Sprite;
 		private var todayTemperatureForecast:TextField;
 		private var todayIcon:Image;
 		private var todayWeatherForecast:TextField;
-		
+
 		private var lineBar:Shape;
-		
+
 		private var marketShare:Array;
-		
-		private var lastX:Number 		= 599.2;
-		private var lastY1:Number 		= 454.3 + 62;
-		private var lastY2:Number 		= 454.3 + 62;
-		private var lastY3:Number 		= 454.3 + 62;
-		private var step:uint 			= 14;
-		
-		private var delayClockTick:int 	= 0;
-		private var delayGraph:int 		= 0;
-		
+
+		private var lastX:Number = 599.2;
+		private var lastY1:Number = 454.3 + 62;
+		private var lastY2:Number = 454.3 + 62;
+		private var lastY3:Number = 454.3 + 62;
+		private var step:uint = 14;
+
+		private var delayClockTick:int = 0;
+		private var delayGraph:int = 0;
+
 		private var opening:int;
 		private var closing:int;
 		private var openingDiscLimit:int;
@@ -71,192 +87,195 @@ package sketchproject.objects.world
 		private var checkClose:Boolean = false;
 		private var checkOpeningDiscount:Boolean = false;
 		private var checkClosingDiscount:Boolean = false;
-		
+
+		/**
+		 * 
+		 */
 		public function GameStats()
 		{
 			super();
-			
+
 			statsCustomer = new StatsCustomerDialog();
 			statsCustomer.x = Starling.current.stage.stageWidth * 0.5;
 			statsCustomer.y = Starling.current.stage.stageHeight * 0.5;
 			Game.overlayStage.addChild(statsCustomer);
-			
+
 			statsSales = new StatsSalesDialog();
 			statsSales.x = Starling.current.stage.stageWidth * 0.5;
 			statsSales.y = Starling.current.stage.stageHeight * 0.5;
 			Game.overlayStage.addChild(statsSales);
-			
+
 			statsShop = new StatsShopDialog();
 			statsShop.x = Starling.current.stage.stageWidth * 0.5;
 			statsShop.y = Starling.current.stage.stageHeight * 0.5;
 			Game.overlayStage.addChild(statsShop);
-			
+
 			statsTrend = new StatsTrendDialog();
 			statsTrend.x = Starling.current.stage.stageWidth * 0.5;
 			statsTrend.y = Starling.current.stage.stageHeight * 0.5;
 			Game.overlayStage.addChild(statsTrend);
-			
+
 			marketShare = new Array();
-			
+
 			buttonAddCustomer.enabled = false;
 			buttonAddPoint.enabled = false;
 			buttonAddProfit.enabled = false;
 			buttonAddStar.enabled = false;
-			
+
 			zoomContainer.x -= 20;
 			zoomContainer.y += 125;
 			zoomContainer.visible = false;
-			
+
 			cart.visible = false;
-			
+
 			statsContainer = new Sprite();
 			addChild(statsContainer);
-			
-			line = new Quad(770,140,0xCCCCCC);
+
+			line = new Quad(770, 140, 0xCCCCCC);
 			line.x = 115;
 			line.y = 420.5;
 			line.alpha = 0;
 			statsContainer.addChild(line);
-			
-			buttonShop = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_shops")); 
+
+			buttonShop = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_shops"));
 			buttonShop.x = 730.35;
 			buttonShop.y = 448.15;
 			statsContainer.addChild(buttonShop);
-			
-			buttonTrend = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_trend")); 
+
+			buttonTrend = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_trend"));
 			buttonTrend.x = 730.35;
 			buttonTrend.y = 487;
 			statsContainer.addChild(buttonTrend);
-			
-			buttonSales = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_sales")); 
+
+			buttonSales = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_sales"));
 			buttonSales.x = 127.75;
 			buttonSales.y = 447.7;
 			statsContainer.addChild(buttonSales);
-			
-			buttonView = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_view")); 
+
+			buttonView = new Button(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("button_stats_view"));
 			buttonView.x = 127.75;
 			buttonView.y = 485.4;
 			statsContainer.addChild(buttonView);
-			
+
 			statsBackground = new Image(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("game_stats_background"));
 			statsBackground.x = 224.5;
 			statsBackground.y = 420.5;
 			statsContainer.addChild(statsBackground);
-			
+
 			panelLabel = new TextField(50, 50, "PANEL", Assets.getFont(Assets.FONT_SSBOLD).fontName, 15, 0xFFFFFF);
 			panelLabel.pivotX = panelLabel.width * 0.5;
 			panelLabel.vAlign = VAlign.TOP;
 			panelLabel.x = 500;
 			panelLabel.y = 422;
 			statsContainer.addChild(panelLabel);
-			
+
 			weatherContainer = new Sprite();
 			weatherContainer.x = 248.6;
-			weatherContainer.y = 443;			
+			weatherContainer.y = 443;
 			statsContainer.addChild(weatherContainer);
-			
+
 			todayTemperatureForecast = new TextField(50, 50, Data.weather[0][1], Assets.getFont(Assets.FONT_SSBOLD).fontName, 15, 0x333333);
 			todayTemperatureForecast.hAlign = HAlign.LEFT;
 			weatherContainer.addChild(todayTemperatureForecast);
-			
+
 			todayIcon = new Image(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture(Data.weather[0][3]));
 			todayIcon.x = 20;
 			weatherContainer.addChild(todayIcon);
-			
+
 			todayWeatherForecast = new TextField(100, 50, Data.weather[0][2], Assets.getFont(Assets.FONT_SSBOLD).fontName, 15, 0x333333);
 			todayWeatherForecast.hAlign = HAlign.LEFT;
 			todayWeatherForecast.y = 20;
 			weatherContainer.addChild(todayWeatherForecast);
-			
-			day = new TextField(150,25,"DAY "+DayCounter.dayCounting()+" YEAR "+DayCounter.yearCounting(), Assets.getFont(Assets.FONT_SSBOLD).fontName,11, 0x333333);
+
+			day = new TextField(150, 25, "DAY " + DayCounter.dayCounting() + " YEAR " + DayCounter.yearCounting(), Assets.getFont(Assets.FONT_SSBOLD).fontName, 11, 0x333333);
 			day.pivotX = day.width;
 			day.hAlign = HAlign.RIGHT;
 			day.vAlign = VAlign.TOP;
 			day.x = 438;
 			day.y = 448.05;
 			statsContainer.addChild(day);
-			
-			event = new TextField(150,25,Data.event.length+" EVENTS TODAY", Assets.getFont(Assets.FONT_SSREGULAR).fontName,12, 0x333333);
+
+			event = new TextField(150, 25, Data.event.length + " EVENTS TODAY", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 12, 0x333333);
 			event.pivotX = event.width;
 			event.hAlign = HAlign.RIGHT;
 			event.vAlign = VAlign.TOP;
 			event.x = 438;
 			event.y = 463.3;
 			statsContainer.addChild(event);
-			
-			district = new TextField(150,25,Data.district, Assets.getFont(Assets.FONT_SSBOLD).fontName,15, 0x333333);
+
+			district = new TextField(150, 25, Data.district, Assets.getFont(Assets.FONT_SSBOLD).fontName, 15, 0x333333);
 			district.pivotX = district.width;
 			district.hAlign = HAlign.RIGHT;
 			district.vAlign = VAlign.TOP;
 			district.x = 438;
 			district.y = 477.7;
 			statsContainer.addChild(district);
-			
-			line = new Quad(190,1,0x333333);
+
+			line = new Quad(190, 1, 0x333333);
 			line.x = 248.6;
 			line.y = 504.65;
 			statsContainer.addChild(line);
-			
-			label = new TextField(150,25,"Weather", Assets.getFont(Assets.FONT_SSREGULAR).fontName,13, 0x333333);
+
+			label = new TextField(150, 25, "Weather", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 13, 0x333333);
 			label.hAlign = HAlign.LEFT;
 			label.vAlign = VAlign.TOP;
 			label.x = 248.6;
 			label.y = 504.65;
 			statsContainer.addChild(label);
-			
-			label = new TextField(150,25,"Traffic", Assets.getFont(Assets.FONT_SSREGULAR).fontName,13, 0x333333);
+
+			label = new TextField(150, 25, "Traffic", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 13, 0x333333);
 			label.hAlign = HAlign.RIGHT;
 			label.vAlign = VAlign.TOP;
 			label.pivotX = label.width;
 			label.x = 438.4;
 			label.y = 504.65;
 			statsContainer.addChild(label);
-			
-			label = new TextField(150,100,"100%\n\n50%\n\n0%", Assets.getFont(Assets.FONT_SSREGULAR).fontName,12, 0x333333);
+
+			label = new TextField(150, 100, "100%\n\n50%\n\n0%", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 12, 0x333333);
 			label.hAlign = HAlign.LEFT;
 			label.vAlign = VAlign.TOP;
 			label.x = 556.05;
 			label.y = 452.2;
 			statsContainer.addChild(label);
-			
-			line = new Quad(145,65,0xCCCCCC);
+
+			line = new Quad(145, 65, 0xCCCCCC);
 			line.x = 599.2;
 			line.y = 454.3;
 			statsContainer.addChild(line);
-			
-			line = new Quad(145,1,0xAAAAAA);
+
+			line = new Quad(145, 1, 0xAAAAAA);
 			line.x = 599.2;
 			line.y = 474;
 			statsContainer.addChild(line);
-			
-			line = new Quad(145,1,0xAAAAAA);
+
+			line = new Quad(145, 1, 0xAAAAAA);
 			line.x = 599.2;
 			line.y = 504;
 			statsContainer.addChild(line);
-			
+
 			lineBar = new Shape();
 			statsContainer.addChild(lineBar);
 
 			clock = new Clock();
 			clock.x = 455.05 + clock.width * 0.5 + 3;
-			clock.y = 440.55 + clock.height * 0.5 + 10;			
+			clock.y = 440.55 + clock.height * 0.5 + 10;
 			statsContainer.addChild(clock);
-			
-			
+
+
 			opening = int(Data.schedule[DayCounter.numberDayWeek()][0]);
 			closing = int(Data.schedule[DayCounter.numberDayWeek()][1]);
 			openingDiscLimit = opening + 2;
 			closingDiscLimit = closing - 2;
 			clock.hour = 3;
-			
+
 			addEventListener(TouchEvent.TOUCH, onStatsTouched);
-			
+
 			hideStats();
 		}
-				
+
 		private function onStatsTouched(touch:TouchEvent):void
 		{
-			if (touch.getTouch(statsContainer,TouchPhase.HOVER) || touch.getTouch(statsContainer,TouchPhase.BEGAN) || touch.getTouch(statsContainer,TouchPhase.ENDED) || touch.getTouch(statsContainer,TouchPhase.MOVED))
+			if (touch.getTouch(statsContainer, TouchPhase.HOVER) || touch.getTouch(statsContainer, TouchPhase.BEGAN) || touch.getTouch(statsContainer, TouchPhase.ENDED) || touch.getTouch(statsContainer, TouchPhase.MOVED))
 			{
 				showStats();
 			}
@@ -264,60 +283,66 @@ package sketchproject.objects.world
 			{
 				hideStats();
 			}
-			
-			if (touch.getTouch(buttonSales,TouchPhase.ENDED))
+
+			if (touch.getTouch(buttonSales, TouchPhase.ENDED))
 			{
 				statsSales.openDialog();
 			}
-			
-			if (touch.getTouch(buttonShop,TouchPhase.ENDED))
+
+			if (touch.getTouch(buttonShop, TouchPhase.ENDED))
 			{
 				statsShop.openDialog();
 			}
-			
-			if (touch.getTouch(buttonTrend,TouchPhase.ENDED))
+
+			if (touch.getTouch(buttonTrend, TouchPhase.ENDED))
 			{
 				statsTrend.openDialog();
 			}
-			
-			if (touch.getTouch(buttonView,TouchPhase.ENDED))
+
+			if (touch.getTouch(buttonView, TouchPhase.ENDED))
 			{
 				statsCustomer.openDialog();
 			}
-			
+
 		}
-		
+
+		/**
+		 * 
+		 */
 		public function showStats():void
 		{
 			statsContainer.y = 0;
 			hudContainer.y = 0;
 			panelLabel.visible = false;
 		}
-		
+
+		/**
+		 * 
+		 */
 		public function hideStats():void
 		{
 			hudContainer.y = -200;
 			statsContainer.y = 115;
 			panelLabel.visible = true;
 		}
-		
-		
+
+
 		override public function update():void
 		{
 			delayClockTick++;
 			delayGraph++;
-			
-			if(delayClockTick == 20)
+
+			if (delayClockTick == 20)
 			{
 				clock.update();
-				
-				if(!checkOpen && clock.hour == opening)
+
+				if (!checkOpen && clock.hour == opening)
 				{
 					checkOpen = true;
-					trace("open shop at "+opening);
-					if(Data.discountFirst)
+					trace("open shop at " + opening);
+					if (Data.discountFirst)
 					{
-						trace("opening with discount for 2 hours until "+openingDiscLimit);
+						trace("opening with discount for 2 hours until " + openingDiscLimit);
 					}
 					else
 					{
@@ -326,86 +351,86 @@ package sketchproject.objects.world
 					}
 					dispatchEventWith(SHOP_OPEN);
 				}
-				
-				if(!checkClose && clock.hour == closing)
+
+				if (!checkClose && clock.hour == closing)
 				{
-					checkOpen = true;					
+					checkOpen = true;
 					trace("closing discount ended");
-					trace("close shop at "+closing);
+					trace("close shop at " + closing);
 					dispatchEventWith(SHOP_CLOSE);
 				}
-				
-				if(!checkOpeningDiscount && clock.hour == openingDiscLimit)
+
+				if (!checkOpeningDiscount && clock.hour == openingDiscLimit)
 				{
-					checkOpeningDiscount = true;	
+					checkOpeningDiscount = true;
 					trace("opening discount ended");
 				}
-				
-				if(!checkClosingDiscount && clock.hour == closingDiscLimit)
+
+				if (!checkClosingDiscount && clock.hour == closingDiscLimit)
 				{
-					checkClosingDiscount = true;	
-					if(Data.discountLast)
+					checkClosingDiscount = true;
+					if (Data.discountLast)
 					{
-						trace("closing with discount for 2 hours until "+closingDiscLimit);
+						trace("closing with discount for 2 hours until " + closingDiscLimit);
 					}
 					else
 					{
 						trace("closing without discount");
 						checkClosingDiscount = true;
-					}					
-				}					
-				
+					}
+				}
+
 				delayClockTick = 0;
 			}
-			if(delayGraph == 50)
+			if (delayGraph == 50)
 			{
 				lastX = 599.2;
 				lastY1 = 454.3 + 62;
 				lastY2 = 454.3 + 62;
 				lastY3 = 454.3 + 62;
-				
-				var a:int = Math.ceil(Math.random()*100);
-				var b:int = Math.ceil(Math.random()*(100-a));
-				var c:int = 100-(a+b);
-				
-				marketShare.push(new Array(a,b,c));
-				
-				if(marketShare.length > 10)
+
+				var a:int = Math.ceil(Math.random() * 100);
+				var b:int = Math.ceil(Math.random() * (100 - a));
+				var c:int = 100 - (a + b);
+
+				marketShare.push(new Array(a, b, c));
+
+				if (marketShare.length > 10)
 				{
-					lastY1 = 454.3 + 62 - (60/100*marketShare[0][0]);
-					lastY2 = 454.3 + 62 - (60/100*marketShare[0][1]);
-					lastY3 = 454.3 + 62 - (60/100*marketShare[0][2]);
-					marketShare.shift();	
+					lastY1 = 454.3 + 62 - (60 / 100 * marketShare[0][0]);
+					lastY2 = 454.3 + 62 - (60 / 100 * marketShare[0][1]);
+					lastY3 = 454.3 + 62 - (60 / 100 * marketShare[0][2]);
+					marketShare.shift();
 				}
-				
+
 				lineBar.graphics.clear();
-				
-				for(var i:uint = 0, l:uint = marketShare.length; i<l; i++)
+
+				for (var i:uint = 0, l:uint = marketShare.length; i < l; i++)
 				{
 					lineBar.graphics.lineStyle(1, 0xff5053);
-					lineBar.graphics.moveTo(lastX,lastY1);
-					lastY1 = 454.3 + 62 - (60/100*marketShare[i][0]);
+					lineBar.graphics.moveTo(lastX, lastY1);
+					lastY1 = 454.3 + 62 - (60 / 100 * marketShare[i][0]);
 					lineBar.graphics.lineTo(lastX + step, lastY1);
-					
+
 					lineBar.graphics.lineStyle(1, 0x06cffd);
-					lineBar.graphics.moveTo(lastX,lastY2);
-					lastY2 = 454.3 + 62 - (60/100*marketShare[i][1]);
+					lineBar.graphics.moveTo(lastX, lastY2);
+					lastY2 = 454.3 + 62 - (60 / 100 * marketShare[i][1]);
 					lineBar.graphics.lineTo(lastX + step, lastY2);
-					
+
 					lineBar.graphics.lineStyle(1, 0x96ce00);
-					lineBar.graphics.moveTo(lastX,lastY3);
-					lastY3 = 454.3 + 62 - (60/100*marketShare[i][2]);
+					lineBar.graphics.moveTo(lastX, lastY3);
+					lastY3 = 454.3 + 62 - (60 / 100 * marketShare[i][2]);
 					lineBar.graphics.lineTo(lastX + step, lastY3);
-					
-					lastX+=step;
+
+					lastX += step;
 				}
-				
+
 				delayGraph = 0;
 			}
-			
+
 			super.update();
-						
-			
+
+
 		}
 	}
 }

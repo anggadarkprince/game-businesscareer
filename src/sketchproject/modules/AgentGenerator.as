@@ -639,7 +639,8 @@ package sketchproject.modules
 
 			// add weather into list
 			var atlas:String = "weather_" + String(Config.weather[forecast - 1][1]).toLowerCase().replace(" ", "_");
-			Data.weather.push(new Array(forecast, // 0 index of weather
+			Data.weather.push(new Array(
+				forecast, // 0 index of weather
 				temprature, // 1 current temprature
 				String(Config.weather[forecast - 1][1]), // 2 weather name
 				atlas, // 3 atlas
@@ -759,13 +760,14 @@ package sketchproject.modules
 					}
 
 					// add new event
-					var event:Array = [int(Config.event[eventIndex][0]), // 0 event id
+					var event:Array = [
+						int(Config.event[eventIndex][0]), // 0 event id
 						String(Config.event[eventIndex][1]), // 1 event name
 						int(Config.event[eventIndex][5][0]), // 2 time start
 						int(Config.event[eventIndex][5][1]), // 3 time finish
 						String(Config.event[eventIndex][3][trafficDay]), // 4 traffic (low, avg, high)
-						location, // 5 location set coordinate
-						Config.event[eventIndex][4], // 6 event characteristic education,art,athletic
+						location, // 5 location set coordinates
+						Config.event[eventIndex][4], // 6 event characteristics education,art,athletic
 						Config.event[eventIndex][2] // 7 district name
 						];
 					Data.event.push(event);

@@ -3,8 +3,9 @@ package sketchproject.core
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.ui.Mouse;
-
+	
 	import sketchproject.interfaces.IState;
+	import sketchproject.managers.DataManager;
 	import sketchproject.modules.EventFactory;
 	import sketchproject.objects.Tooltips;
 	import sketchproject.objects.dialog.LoadingDialog;
@@ -16,7 +17,7 @@ package sketchproject.core
 	import sketchproject.states.Play;
 	import sketchproject.states.Preloading;
 	import sketchproject.states.Startup;
-
+	
 	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -120,6 +121,7 @@ package sketchproject.core
 			Assets.init();
 			changeState(PRELOADING_STATE);
 			addEventListener(Event.ENTER_FRAME, update);
+			DataManager.traceGameData();
 		}
 
 		/**

@@ -235,7 +235,8 @@ package sketchproject.managers
 			var workHistory:String = gameServer.received.work_history_var;
 			var workTotal:String = gameServer.received.work_total_var;
 
-			if (JSON.parse(game) as Object != null)
+			var generalData:Array = JSON.parse(game) as Array;
+			if (JSON.parse(game) as Object != null && generalData == null)
 			{
 				var gameData:Object = JSON.parse(game) as Object;
 
@@ -438,6 +439,12 @@ package sketchproject.managers
 			trace("simulation", JSON.stringify(Data.simulation));
 
 			trace("----------------------------------------------------------\n");
+			
+			trace("master event", Config.event);
+			trace("master weather", Config.weather);
+			trace("master district", Config.district);
+			trace("master advertisement", Config.advertisement);
+			trace("master research", JSON.stringify(Config.research));
 		}
 	}
 }

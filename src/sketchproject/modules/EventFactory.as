@@ -24,11 +24,11 @@ package sketchproject.modules
 		/**
 		 * Generate weather for today.
 		 *
-		 * @param isInitial push 3 at once if first time
+		 * @param isInitial indicate just create not replace
 		 */
 		public function generateWeather(isInitial:Boolean = false):void
 		{
-			if (Data.weather.length != 0 && !isInitial)
+			if (Data.weather.length > 0 && !isInitial)
 			{
 				Data.weather.shift();
 			}
@@ -96,7 +96,12 @@ package sketchproject.modules
 		 */
 		public function initialTask():void
 		{
-			Data.tasks = [["journal", 200, Config.transaction[0][2].toString(), "task_journal", "Loan"], ["upgrade", 500, "Upgrade asset Vehicle menjadi level 2", "task_upgrade", "Vehicle", 2], ["selling", 200, "Lakukan penjualan dengan total 150000", "task_selling", 150000], ["order", 300, "Siapkan Material 'Rice' sebanyak 60 buah", "task_order", 1, 60]];
+			Data.tasks = [
+				["journal", 200, Config.transaction[0][2].toString(), "task_journal", "Loan"], 
+				["upgrade", 500, "Upgrade asset Vehicle menjadi level 2", "task_upgrade", "Vehicle", 2], 
+				["selling", 200, "Lakukan penjualan dengan total 150000", "task_selling", 150000], 
+				["order", 300, "Siapkan Material 'Rice' sebanyak 60 buah", "task_order", 1, 60]
+			];
 		}
 
 		/**
@@ -104,8 +109,15 @@ package sketchproject.modules
 		 */
 		public function initialTransaction():void
 		{
-			Config.transactionList = [["Loan", 8000000], ["Equity", 2000000], ["Cart", 5000000], ["Equipment", 300000], ["Permit", 750000], ["Logo", 500000], ["Insurance", 300000]];
+			Config.transactionList = [
+				["Loan", 8000000], 
+				["Equity", 2000000], 
+				["Cart", 5000000], 
+				["Equipment", 300000], 
+				["Permit", 750000], 
+				["Logo", 500000], 
+				["Insurance", 300000]
+			];
 		}
-
 	}
 }

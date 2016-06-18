@@ -38,19 +38,24 @@ package sketchproject.states
 	import sketchproject.screens.IssuesScreen;
 	import sketchproject.screens.MapScreen;
 	import sketchproject.screens.ProductScreen;
-	
+
 	import starling.display.Sprite;
 	import starling.events.Event;
-	
+
+	/**
+	 * Main game feature state, manage business, employee, promotion, finance and profile.
+	 * 
+	 * @author Angga
+	 */
 	public class Play extends Sprite implements IState
 	{
 		private var game:Game;
 		private var fireworkManager:FireworkManager;
-		
+
 		// layers
 		private var hud:GameMenu;
 		private var screens:Sprite;
-		
+
 		//screen
 		private var mapScreen:MapScreen;
 		private var businessScreen:BusinessScreen;
@@ -59,216 +64,227 @@ package sketchproject.states
 		private var issuesScreen:IssuesScreen;
 		private var advertScreen:AdvertisingScreen;
 		private var financeScreen:FinanceScreen;
-				
+
 		private var hintDialog:HintDialog = new HintDialog();
 		private var dialogInfo:NativeDialog = new NativeDialog(NativeDialog.DIALOG_INFORMATION);
-		
+
 		// panels
 		private var panelCustomer:CustomerPanel = new CustomerPanel();
 		private var panelTask:TaskPanel = new TaskPanel();
 		private var panelAchievement:AchievementPanel = new AchievementPanel();
 		private var panelProfit:ProfitPanel = new ProfitPanel();
-		
+
 		// dialogs
-		private var dialogHelp:HelpDialog;		
+		private var dialogHelp:HelpDialog;
 		private var dialogProfile:AvatarDialog;
 		private var dialogLeaderboard:Leaderboard;
 		private var dialogBooster:BoosterDialog;
 		private var dialogPause:PauseDialog;
 		private var dialogOption:OptionDialog;
 		private var dialogPost:PostDialog;
-		
+
 		// managers
 		private var taskManager:TaskManager;
-		
+
 		private var congratulation:UnlockDialog = new UnlockDialog();
 		private var complete:CompleteDialog = new CompleteDialog();
 		private var task:NewTaskDialog = new NewTaskDialog();
-				
+
 		private var save:DataManager;
-		
-		
+
+		/**
+		 * Default constructor of Play.
+		 * 
+		 * @param game root
+		 */
 		public function Play(game:Game)
 		{
 			super();
 			this.game = game;
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
-		
+
 		private function init(event:Event):void
 		{
 			initialize();
 			trace("[STATE] PLAY");
 		}
-		
+
+		/**
+		 * 
+		 */
 		public function initialize():void
-		{			
+		{
 			fireworkManager = new FireworkManager(Game.overlayStage);
-			
+
 			save = new DataManager();
-			
+
 			screens = new Sprite();
 			addChild(screens);
-			
+
 			congratulation.x = stage.stageWidth * 0.5;
 			congratulation.y = stage.stageHeight * 0.5;
 			congratulation.name = "unlockAchievement";
-			congratulation.addEventListener(UnlockDialog.ACHIEVEMENT_UNLOCKED, function(event:Event):void{
+			congratulation.addEventListener(UnlockDialog.ACHIEVEMENT_UNLOCKED, function(event:Event):void
+			{
 				unlockCheck();
 			});
 			Game.overlayStage.addChild(congratulation);
-			
+
 			complete.x = stage.stageWidth * 0.5;
 			complete.y = stage.stageHeight * 0.5;
 			complete.name = "taskComplete";
 			Game.overlayStage.addChild(complete);
-			
+
 			task.x = stage.stageWidth * 0.5;
 			task.y = stage.stageHeight * 0.5;
 			task.name = "newTask";
 			Game.overlayStage.addChild(task);
-			
+
 			dialogInfo.x = stage.stageWidth * 0.5;
 			dialogInfo.y = stage.stageHeight * 0.5;
 			dialogInfo.name = "info";
-			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void{dialogInfo.closeDialog()});
+			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void
+			{
+				dialogInfo.closeDialog()
+			});
 			Game.overlayStage.addChild(dialogInfo);
-			
-			dialogPost = new PostDialog("Loan",0,false, false);
+
+			dialogPost = new PostDialog("Loan", 0, false, false);
 			dialogPost.x = stage.stageWidth * 0.5;
 			dialogPost.y = stage.stageHeight * 0.5;
 			dialogPost.addEventListener(PostDialog.POSTING, recallPosting);
 			Game.overlayStage.addChild(dialogPost);
-			
+
 			hud = new GameMenu();
-			
+
 			hud.addEventListener(NavigationEvent.SWITCH, onTriggered);
 			hud.addEventListener(ZoomEvent.ZOOM_IN, onZoomIn);
 			hud.addEventListener(ZoomEvent.ZOOM_OUT, onZoomOut);
-			
+
 			hintDialog.x = stage.stageWidth * 0.5;
 			hintDialog.y = stage.stageHeight * 0.5;
 			hintDialog.name = "hint";
 			Game.overlayStage.addChild(hintDialog);
-			
+
 			mapScreen = new MapScreen();
 			mapScreen.x = stage.stageWidth * 0.5;
 			mapScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(mapScreen);
-			
+
 			businessScreen = new BusinessScreen(hud);
 			businessScreen.x = stage.stageWidth * 0.5;
 			businessScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(businessScreen);
-			
+
 			productScreen = new ProductScreen(hud);
 			productScreen.x = stage.stageWidth * 0.5;
 			productScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(productScreen);
-			
+
 			employeeScreen = new EmployeeScreen(hud);
 			employeeScreen.x = stage.stageWidth * 0.5;
 			employeeScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(employeeScreen);
-			
+
 			issuesScreen = new IssuesScreen();
 			issuesScreen.x = stage.stageWidth * 0.5;
 			issuesScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(issuesScreen);
-			
+
 			advertScreen = new AdvertisingScreen(hud);
 			advertScreen.x = stage.stageWidth * 0.5;
 			advertScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(advertScreen);
-								
+
 			financeScreen = new FinanceScreen();
 			financeScreen.x = stage.stageWidth * 0.5;
 			financeScreen.y = stage.stageHeight * 0.5;
 			screens.addChild(financeScreen);
-			
+
 			addChild(hud);
-						
+
 			dialogHelp = new HelpDialog();
 			dialogHelp.x = stage.stageWidth * 0.5;
 			dialogHelp.y = stage.stageHeight * 0.5;
 			addChild(dialogHelp);
-			
+
 			dialogOption = new OptionDialog();
 			dialogOption.x = stage.stageWidth * 0.5;
 			dialogOption.y = stage.stageHeight * 0.5;
 			dialogOption.addEventListener(OptionDialog.SOUND_CHANGED, onSoundChanged);
-			
+
 			dialogProfile = new AvatarDialog();
 			dialogProfile.x = stage.stageWidth * 0.5;
 			dialogProfile.y = stage.stageHeight * 0.5;
 			addChild(dialogProfile);
-			
+
 			dialogLeaderboard = new Leaderboard();
 			dialogLeaderboard.x = stage.stageWidth * 0.5;
 			dialogLeaderboard.y = stage.stageHeight * 0.5;
 			addChild(dialogLeaderboard);
-			
+
 			dialogBooster = new BoosterDialog();
 			dialogBooster.x = stage.stageWidth * 0.5;
 			dialogBooster.y = stage.stageHeight * 0.5;
 			addChild(dialogBooster);
-			
+
 			panelCustomer.x = stage.stageWidth * 0.5;
 			panelCustomer.y = stage.stageHeight * 0.5;
 			addChild(panelCustomer);
-			
+
 			panelTask.x = stage.stageWidth * 0.5;
 			panelTask.y = stage.stageHeight * 0.5;
 			addChild(panelTask);
-			
+
 			panelAchievement.x = stage.stageWidth * 0.5;
 			panelAchievement.y = stage.stageHeight * 0.5;
 			addChild(panelAchievement);
-			
+
 			panelProfit.x = stage.stageWidth * 0.5;
 			panelProfit.y = stage.stageHeight * 0.5;
 			addChild(panelProfit);
-			
-			dialogPause = new PauseDialog(game,dialogOption);
+
+			dialogPause = new PauseDialog(game, dialogOption);
 			dialogPause.x = stage.stageWidth * 0.5;
 			dialogPause.y = stage.stageHeight * 0.5;
 			addChild(dialogPause);
 			addChild(dialogOption);
-						
-			if(Config.firstOpen)
+
+			if (Config.firstOpen)
 			{
 				Config.firstOpen = false;
-				var quickHelp:QuickHelp = new QuickHelp();	
+				var quickHelp:QuickHelp = new QuickHelp();
 				quickHelp.x = stage.stageWidth * 0.5;
 				quickHelp.y = stage.stageHeight * 0.5;
 				quickHelp.addEventListener(DialogBoxEvent.CLOSED, onOpenShop);
 				addChild(quickHelp);
 				quickHelp.openDialog();
-				Assets.sfxChannel = Assets.sfxWelcome.play(0,0,Assets.sfxTransform);
+				Assets.sfxChannel = Assets.sfxWelcome.play(0, 0, Assets.sfxTransform);
 			}
-									
+
 			taskManager = new TaskManager(hud);
-			
+
 			switchScreen(mapScreen);
-			
+
 			unlockCheck();
 		}
-		
+
 		private function onSoundChanged(event:Event):void
 		{
 			hud.checkSoundState();
 		}
-		
+
 		private function onOpenShop(event:Event):void
 		{
 			initialPosting();
 		}
-		
+
 		private function initialPosting():void
 		{
-			if(Config.firstPlay)
+			if (Config.firstPlay)
 			{
-				if(Config.transactionList.length > 0)
+				if (Config.transactionList.length > 0)
 				{
 					dialogPost.transactionType = Config.transactionList[0][0];
 					dialogPost.transactionValue = Config.transactionList[0][1];
@@ -283,45 +299,47 @@ package sketchproject.states
 				}
 			}
 		}
-		
-		private function recallPosting(event:Event):void{						
-			trace("transaction",Config.transactionList.length);
-			initialPosting();						
-		};
-		
+
+		private function recallPosting(event:Event):void
+		{
+			trace("transaction", Config.transactionList.length);
+			initialPosting();
+		}
+		;
+
 		private function unlockCheck():void
 		{
-			if(Config.achieved.length > 0)
+			if (Config.achieved.length > 0)
 			{
 				var unlock:Object = Config.achieved.shift();
-				congratulation.unlockInfo = "You have unlock "+unlock.ach_achievement+" Achievement";
+				congratulation.unlockInfo = "You have unlock " + unlock.ach_achievement + " Achievement";
 				congratulation.unlockIcon = unlock.ach_atlas;
 				congratulation.openDialog();
-				Data.point+=int(unlock.ach_reward);
-				
-				var gameObject:Object 			= new Object();
-				gameObject.token 				= Data.key;
-				gameObject.achievement			= unlock.ach_id;
-				
-				var server:ServerManager = new ServerManager("achievement/unlock_achievement",gameObject);
+				Data.point += int(unlock.ach_reward);
+
+				var gameObject:Object = new Object();
+				gameObject.token = Data.key;
+				gameObject.achievement = unlock.ach_id;
+
+				var server:ServerManager = new ServerManager("achievement/unlock_achievement", gameObject);
 				server.sendRequest();
 			}
 		}
-		
+
 		private function onZoomOut(event:ZoomEvent):void
 		{
-			if(Config.zoom > 1)
+			if (Config.zoom > 1)
 			{
 				hud.zoomControl(--Config.zoom);
 				mapScreen.scaleX = Config.zoom;
 				mapScreen.scaleY = Config.zoom;
 				mapScreen.resetPosition();
-			}			
+			}
 		}
-		
+
 		private function onZoomIn(event:ZoomEvent):void
 		{
-			if(Config.zoom < 3)
+			if (Config.zoom < 3)
 			{
 				hud.zoomControl(++Config.zoom);
 				mapScreen.scaleX = Config.zoom;
@@ -329,12 +347,12 @@ package sketchproject.states
 				mapScreen.resetPosition();
 			}
 		}
-		
-		
+
+
 		private function onTriggered(event:NavigationEvent):void
 		{
 			fireworkManager.spawn(Game.cursor.x, Game.cursor.y);
-			switch(event.navigate)
+			switch (event.navigate)
 			{
 				//** HUD menu list **/
 				case NavigationEvent.NAVIGATE_CUSTOMER:
@@ -353,7 +371,7 @@ package sketchproject.states
 					trace("[PANEL] profit");
 					panelProfit.openDialog();
 					break;
-				
+
 				//** Side menu list **/
 				case NavigationEvent.NAVIGATE_HELP:
 					trace("[DIALOG] help");
@@ -364,32 +382,32 @@ package sketchproject.states
 					dialogOption.openDialog();
 					break;
 				case NavigationEvent.NAVIGATE_AVATAR:
-					trace("[DIALOG] my avatar");					
+					trace("[DIALOG] my avatar");
 					dialogProfile.openDialog();
 					break;
 				case NavigationEvent.NAVIGATE_ACHIEVEMENT:
-					trace("[PANEL] achievement");					
+					trace("[PANEL] achievement");
 					panelAchievement.openDialog();
 					break;
 				case NavigationEvent.NAVIGATE_LEADERBOARD:
-					trace("[DIALOG] leaderboard");					
+					trace("[DIALOG] leaderboard");
 					dialogLeaderboard.openDialog();
 					break;
 				case NavigationEvent.NAVIGATE_BOOSTER:
-					trace("[DIALOG] booster");					
+					trace("[DIALOG] booster");
 					dialogBooster.openDialog();
-					break;				
+					break;
 				case NavigationEvent.NAVIGATE_PAUSE:
-					trace("[DIALOG] pause");					
+					trace("[DIALOG] pause");
 					dialogPause.openDialog();
 					break;
 				case NavigationEvent.NAVIGATE_MARKET:
-					trace("[PLAY] market");	
+					trace("[PLAY] market");
 					LoadingTransition.destination = Game.WORLD_STATE;
 					trace(LoadingTransition.destination);
 					game.changeState(Game.TRANSITION_STATE);
 					break;
-				
+
 				//** Dashboard menu list **/				
 				case NavigationEvent.NAVIGATE_MAP:
 					trace("[MENU] launch map");
@@ -420,10 +438,14 @@ package sketchproject.states
 					trace("[MENU] launch finance");
 					financeScreen.startRetrieveFinance();
 					switchScreen(financeScreen);
-					break;				
+					break;
 			}
 		}
-		
+
+		/**
+		 * 
+		 * @param screen
+		 */
 		public function switchScreen(screen:GameScreen):void
 		{
 			mapScreen.visible = false;
@@ -433,7 +455,7 @@ package sketchproject.states
 			issuesScreen.visible = false;
 			advertScreen.visible = false;
 			financeScreen.visible = false;
-			
+
 			mapScreen.hideMenu();
 			businessScreen.hideMenu();
 			productScreen.hideMenu();
@@ -441,8 +463,8 @@ package sketchproject.states
 			issuesScreen.hideMenu();
 			advertScreen.hideMenu();
 			financeScreen.hideMenu();
-			
-			if(screen == mapScreen)
+
+			if (screen == mapScreen)
 			{
 				hud.showHUD();
 			}
@@ -450,11 +472,14 @@ package sketchproject.states
 			{
 				hud.hideHUD();
 			}
-			
+
 			screen.showMenu();
 			screen.visible = true;
 		}
-		
+
+		/**
+		 * 
+		 */
 		public function update():void
 		{
 			hud.update();
@@ -463,7 +488,10 @@ package sketchproject.states
 			dialogOption.update();
 			congratulation.update();
 		}
-		
+
+		/**
+		 * 
+		 */
 		public function destroy():void
 		{
 			hud.destroy();
@@ -471,10 +499,14 @@ package sketchproject.states
 			dialogOption.removeFromParent(false);
 			dialogHelp.removeFromParent(false);
 			dialogProfile.removeFromParent(false);
-			removeFromParent(true);			
+			removeFromParent(true);
 		}
-		
-		public function toString() : String 
+
+		/**
+		 * 
+		 * @return 
+		 */
+		public function toString():String
 		{
 			return "sketchproject.modules.states.VacationState";
 		}

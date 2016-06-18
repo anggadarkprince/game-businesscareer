@@ -6,7 +6,7 @@ package sketchproject.states
 	import com.greensock.easing.Cubic;
 	import com.greensock.easing.Elastic;
 	import com.greensock.easing.Linear;
-
+	
 	import sketchproject.core.Assets;
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
@@ -17,7 +17,7 @@ package sketchproject.states
 	import sketchproject.objects.loading.AssetsLoader;
 	import sketchproject.objects.loading.GameLoader;
 	import sketchproject.objects.loading.TransitionScreen;
-
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -40,7 +40,9 @@ package sketchproject.states
 		private var assetsLoading:Boolean;
 
 		/**
-		 * Preloading state constructor
+		 * Default constructor of Preloading.
+		 * 
+		 * @param game root
 		 */
 		public function Preloading(game:Game)
 		{
@@ -380,14 +382,9 @@ package sketchproject.states
 		public function destroy():void
 		{
 			developerLogo.removeFromParent(true);
-			developerLogo = null;
 			gamePreload.removeFromParent(true);
-			gamePreload = null;
 			assetsPreload.removeFromParent(true);
-			assetsPreload = null;
 			readySessionServer.removeFromParent(true);
-			readySessionServer = null;
-
 			removeFromParent(true);
 		}
 

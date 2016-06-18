@@ -118,12 +118,12 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.name, 
-					item.min, 
-					item.max, 
-					item.probability, 
-					item.status
+					int(item.attribute("id")), 
+					String(item.name), 
+					int(item.min), 
+					int(item.max), 
+					Number(item.probability), 
+					String(item.status)
 				];
 
 				Config.weather.push(row);
@@ -160,13 +160,13 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.name, 
-					item.district, 
+					int(item.attribute("id")), 
+					String(item.name), 
+					String(item.district), 
 					new Array(
-						item.traffic.normal, 
-						item.traffic.weekend, 
-						item.traffic.holiday
+						String(item.traffic.normal), 
+						String(item.traffic.weekend), 
+						String(item.traffic.holiday)
 					), 
 					new Array(
 						int(item.profile.education), 
@@ -213,9 +213,9 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.title, 
-					item.content
+					int(item.attribute("id")), 
+					String(item.title), 
+					String(item.content)
 				];
 
 				Config.tipsOfTheDay.push(row);
@@ -252,23 +252,23 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.name, 
-					item.atlas, 
-					item.description, 
-					item.priority, 
+					int(item.attribute("id")), 
+					String(item.name), 
+					String(item.atlas), 
+					String(item.description), 
+					String(item.priority), 
 					new Array(
-						item.population.low, 
-						item.population.normal, 
-						item.population.high
+						Number(item.population.low), 
+						Number(item.population.normal), 
+						Number(item.population.high)
 					), 
 					new Array(
-						item.marker.atlas, 
-						item.marker.x, 
-						item.marker.y
+						String(item.marker.atlas), 
+						int(item.marker.x), 
+						int(item.marker.y)
 					), 
-					item.cost, 
-					new Point(item.shop.x, item.shop.y)
+					int(item.cost), 
+					new Point(int(item.shop.x), int(item.shop.y))
 				];
 				Config.district.push(row);
 			}
@@ -311,9 +311,9 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.name, 
-					item.cost
+					int(item.attribute("id")), 
+					String(item.name), 
+					int(item.cost)
 				];
 
 				Config.research.push(row);
@@ -351,13 +351,13 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.type, 
-					item.name, 
-					item.hint, 
-					item.debit, 
-					item.credit, 
-					item.description
+					int(item.attribute("id")), 
+					String(item.type), 
+					String(item.name), 
+					String(item.hint), 
+					String(item.debit), 
+					String(item.credit), 
+					String(item.description)
 				];
 				Config.transaction.push(row);
 			}
@@ -393,14 +393,14 @@ package sketchproject.core
 			for each (var item:XML in xmlData.children())
 			{
 				var row:Array = [
-					item.attribute("id"), 
-					item.name, 
-					item.atlas, 
+					int(item.attribute("id")), 
+					String(item.name), 
+					String(item.atlas), 
 					new Array(
-						item.visibility.none, 
-						item.visibility.low, 
-						item.visibility.average, 
-						item.visibility.high)
+						int(item.visibility.none), 
+						int(item.visibility.low), 
+						int(item.visibility.average), 
+						int(item.visibility.high))
 				];
 				Config.advertisement.push(row);
 				Data.advertising.push(new Array(int(row[0]), 0, 0));

@@ -11,8 +11,8 @@ package sketchproject.core
 		/** settings **/
 		public static var firstOpen:Boolean = true;
 		public static var firstPlay:Boolean = false;
-		public static var volbgm:uint = 2;
-		public static var volsfx:uint = 2;
+		public static var volbgm:uint = 0;
+		public static var volsfx:uint = 0;
 		public static var mode:String = "window";
 		public static var zoom:Number = 1;
 
@@ -175,7 +175,7 @@ package sketchproject.core
 		public static var emotion:Array = [["emotion_satisfied", "Satisfied", "Fast Serve, good morale", 20], ["emotion_happy", "Happy", "Fast Serve or good morale", 20], ["emotion_squint", "Squint", "Average Serve, morale", 20], ["emotion_frown", "Frown", "Item unavailable", 20], ["emotion_angry", "Angry", "Bad Serve, morale", 20],];
 
 		/** marketshare information **/
-		public static var marketShare:Array = [[35, 0xff5053, "Player"], [45, 0x06cffd, "Shop 1"], [20, 0x96ce00, "Shop 2"]];
+		public static var marketShare:Array = [[0, 0xff5053, "Player"], [0, 0x06cffd, "Competitor 1"], [0, 0x96ce00, "Competitor 2"]];
 
 		
 		/** district coordinate **/
