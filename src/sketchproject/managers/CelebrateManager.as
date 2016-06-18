@@ -8,15 +8,21 @@ package sketchproject.managers
 	import starling.core.Starling;
 	import starling.display.Sprite;
 
+	/**
+	 * Glitter and celebration manager.
+	 * 
+	 * @author Angga
+	 */
 	public class CelebrateManager implements IParticle
 	{
-
 		private var celebrateContainer:Sprite;
 		private var paperPool:StarlingPool;
 		private var papers:Array;
 
 		/**
-		 * Celebrate manager contructor
+		 * Default constructor of CelebrateManager.
+		 * 
+		 * @param celebrateContainer
 		 */
 		public function CelebrateManager(celebrateContainer:Sprite)
 		{
@@ -26,7 +32,8 @@ package sketchproject.managers
 		}
 
 		/**
-		 * Update particle movement
+		 * Update particle movement.
+		 * 
 		 * @return void
 		 */
 		public function update():void
@@ -57,7 +64,8 @@ package sketchproject.managers
 		}
 
 		/**
-		 * Destroy single paper particle
+		 * Destroy single paper particle.
+		 * 
 		 * @params $rain particle to be destroyed when condition meets
 		 * @return void
 		 */
@@ -75,7 +83,8 @@ package sketchproject.managers
 		}
 
 		/**
-		 * Spawn new particle by position
+		 * Spawn new particle by position.
+		 * 
 		 * @params $x for particle x position start
 		 * @params $y for particle y position start
 		 * @return void
@@ -96,7 +105,8 @@ package sketchproject.managers
 		}
 
 		/**
-		 * Destroy object paper pooling
+		 * Destroy object paper pooling.
+		 * 
 		 * @return void
 		 */
 		public function destroy():void

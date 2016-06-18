@@ -72,7 +72,7 @@ package sketchproject.objects.dialog
 		{
 			super();
 
-			fireworkManager = new FireworkManager(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 
 			showTips = new Tooltips();
 			showTips.tipsDirection(Tooltips.TIPS_LEFT);

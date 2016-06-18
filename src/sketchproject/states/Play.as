@@ -38,13 +38,13 @@ package sketchproject.states
 	import sketchproject.screens.IssuesScreen;
 	import sketchproject.screens.MapScreen;
 	import sketchproject.screens.ProductScreen;
-
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 
 	/**
 	 * Main game feature state, manage business, employee, promotion, finance and profile.
-	 * 
+	 *
 	 * @author Angga
 	 */
 	public class Play extends Sprite implements IState
@@ -65,7 +65,7 @@ package sketchproject.states
 		private var advertScreen:AdvertisingScreen;
 		private var financeScreen:FinanceScreen;
 
-		private var hintDialog:HintDialog = new HintDialog();
+		private var dialogHint:HintDialog = new HintDialog();
 		private var dialogInfo:NativeDialog = new NativeDialog(NativeDialog.DIALOG_INFORMATION);
 
 		// panels
@@ -83,18 +83,18 @@ package sketchproject.states
 		private var dialogOption:OptionDialog;
 		private var dialogPost:PostDialog;
 
+		private var unlockDialog:UnlockDialog = new UnlockDialog();
+		private var completeDialog:CompleteDialog = new CompleteDialog();
+		private var taskDialog:NewTaskDialog = new NewTaskDialog();
+
 		// managers
 		private var taskManager:TaskManager;
 
-		private var congratulation:UnlockDialog = new UnlockDialog();
-		private var complete:CompleteDialog = new CompleteDialog();
-		private var task:NewTaskDialog = new NewTaskDialog();
-
-		private var save:DataManager;
+		private var isMapActive:Boolean;
 
 		/**
-		 * Default constructor of Play.
-		 * 
+		 * Default constructor of Play state.
+		 *
 		 * @param game root
 		 */
 		public function Play(game:Game)
@@ -111,41 +111,37 @@ package sketchproject.states
 		}
 
 		/**
-		 * 
+		 * Initialize all play state components.
 		 */
 		public function initialize():void
 		{
-			fireworkManager = new FireworkManager(Game.overlayStage);
-
-			save = new DataManager();
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 
 			screens = new Sprite();
 			addChild(screens);
 
-			congratulation.x = stage.stageWidth * 0.5;
-			congratulation.y = stage.stageHeight * 0.5;
-			congratulation.name = "unlockAchievement";
-			congratulation.addEventListener(UnlockDialog.ACHIEVEMENT_UNLOCKED, function(event:Event):void
-			{
+			unlockDialog.x = stage.stageWidth * 0.5;
+			unlockDialog.y = stage.stageHeight * 0.5;
+			unlockDialog.name = "unlockAchievement";
+			unlockDialog.addEventListener(UnlockDialog.ACHIEVEMENT_UNLOCKED, function(event:Event):void {
 				unlockCheck();
 			});
-			Game.overlayStage.addChild(congratulation);
+			Game.overlayStage.addChild(unlockDialog);
 
-			complete.x = stage.stageWidth * 0.5;
-			complete.y = stage.stageHeight * 0.5;
-			complete.name = "taskComplete";
-			Game.overlayStage.addChild(complete);
+			completeDialog.x = stage.stageWidth * 0.5;
+			completeDialog.y = stage.stageHeight * 0.5;
+			completeDialog.name = "taskComplete";
+			Game.overlayStage.addChild(completeDialog);
 
-			task.x = stage.stageWidth * 0.5;
-			task.y = stage.stageHeight * 0.5;
-			task.name = "newTask";
-			Game.overlayStage.addChild(task);
+			taskDialog.x = stage.stageWidth * 0.5;
+			taskDialog.y = stage.stageHeight * 0.5;
+			taskDialog.name = "newTask";
+			Game.overlayStage.addChild(taskDialog);
 
 			dialogInfo.x = stage.stageWidth * 0.5;
 			dialogInfo.y = stage.stageHeight * 0.5;
 			dialogInfo.name = "info";
-			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void
-			{
+			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void {
 				dialogInfo.closeDialog()
 			});
 			Game.overlayStage.addChild(dialogInfo);
@@ -162,10 +158,10 @@ package sketchproject.states
 			hud.addEventListener(ZoomEvent.ZOOM_IN, onZoomIn);
 			hud.addEventListener(ZoomEvent.ZOOM_OUT, onZoomOut);
 
-			hintDialog.x = stage.stageWidth * 0.5;
-			hintDialog.y = stage.stageHeight * 0.5;
-			hintDialog.name = "hint";
-			Game.overlayStage.addChild(hintDialog);
+			dialogHint.x = stage.stageWidth * 0.5;
+			dialogHint.y = stage.stageHeight * 0.5;
+			dialogHint.name = "hint";
+			Game.overlayStage.addChild(dialogHint);
 
 			mapScreen = new MapScreen();
 			mapScreen.x = stage.stageWidth * 0.5;
@@ -251,6 +247,8 @@ package sketchproject.states
 			addChild(dialogPause);
 			addChild(dialogOption);
 
+			taskManager = new TaskManager(hud);
+
 			if (Config.firstOpen)
 			{
 				Config.firstOpen = false;
@@ -263,23 +261,36 @@ package sketchproject.states
 				Assets.sfxChannel = Assets.sfxWelcome.play(0, 0, Assets.sfxTransform);
 			}
 
-			taskManager = new TaskManager(hud);
+			isMapActive = true;
 
 			switchScreen(mapScreen);
 
 			unlockCheck();
 		}
 
+		/**
+		 * Dispatched from option dialog to check sound status is muted or loud.
+		 * 
+		 * @param event
+		 */
 		private function onSoundChanged(event:Event):void
 		{
 			hud.checkSoundState();
 		}
 
+		/**
+		 * Open post transaction if game is played for the first time.
+		 * 
+		 * @param event
+		 */
 		private function onOpenShop(event:Event):void
 		{
 			initialPosting();
 		}
 
+		/**
+		 * Initial transaction must be posted when play the game for the first time.
+		 */
 		private function initialPosting():void
 		{
 			if (Config.firstPlay)
@@ -290,31 +301,43 @@ package sketchproject.states
 					dialogPost.transactionValue = Config.transactionList[0][1];
 					dialogPost.preparePosting();
 					dialogPost.openDialog();
+					
 					Config.transactionList.shift();
 				}
 				else
 				{
 					Config.firstPlay = false;
+					
+					var save:DataManager = new DataManager();
 					save.saveGameData();
 				}
 			}
 		}
 
+		/**
+		 * Recall posting dialog until initial transaction is empty.
+		 * 
+		 * @param event
+		 */
 		private function recallPosting(event:Event):void
 		{
-			trace("transaction", Config.transactionList.length);
 			initialPosting();
 		}
-		;
 
+		/**
+		 * Check player has been unlock the achievement.
+		 */
 		private function unlockCheck():void
 		{
 			if (Config.achieved.length > 0)
 			{
 				var unlock:Object = Config.achieved.shift();
-				congratulation.unlockInfo = "You have unlock " + unlock.ach_achievement + " Achievement";
-				congratulation.unlockIcon = unlock.ach_atlas;
-				congratulation.openDialog();
+				unlockDialog.unlockInfo = "Kamu membuka achievement " + unlock.ach_achievement;
+				unlockDialog.unlockIcon = unlock.ach_atlas;
+				unlockDialog.openDialog();
+				
+				panelAchievement.updateEarned();
+				
 				Data.point += int(unlock.ach_reward);
 
 				var gameObject:Object = new Object();
@@ -326,6 +349,11 @@ package sketchproject.states
 			}
 		}
 
+		/**
+		 * Event handler when player try to zoom out the map.
+		 * 
+		 * @param event
+		 */
 		private function onZoomOut(event:ZoomEvent):void
 		{
 			if (Config.zoom > 1)
@@ -337,6 +365,11 @@ package sketchproject.states
 			}
 		}
 
+		/**
+		 * Event handler when player try to zoom in the map.
+		 * 
+		 * @param event
+		 */
 		private function onZoomIn(event:ZoomEvent):void
 		{
 			if (Config.zoom < 3)
@@ -348,13 +381,17 @@ package sketchproject.states
 			}
 		}
 
-
+		/**
+		 * Event handler when player hit the menu.
+		 * 
+		 * @param event
+		 */
 		private function onTriggered(event:NavigationEvent):void
 		{
 			fireworkManager.spawn(Game.cursor.x, Game.cursor.y);
 			switch (event.navigate)
 			{
-				//** HUD menu list **/
+				/** HUD menu list **/
 				case NavigationEvent.NAVIGATE_CUSTOMER:
 					trace("[PANEL] customer");
 					panelCustomer.openDialog();
@@ -372,7 +409,7 @@ package sketchproject.states
 					panelProfit.openDialog();
 					break;
 
-				//** Side menu list **/
+				/** Side menu list **/
 				case NavigationEvent.NAVIGATE_HELP:
 					trace("[DIALOG] help");
 					dialogHelp.openDialog();
@@ -408,7 +445,7 @@ package sketchproject.states
 					game.changeState(Game.TRANSITION_STATE);
 					break;
 
-				//** Dashboard menu list **/				
+				/** Dashboard menu list **/				
 				case NavigationEvent.NAVIGATE_MAP:
 					trace("[MENU] launch map");
 					switchScreen(mapScreen);
@@ -443,7 +480,9 @@ package sketchproject.states
 		}
 
 		/**
-		 * 
+		 * Change current active screen, set visible false all, 
+		 * then visible the passed screen.
+		 *
 		 * @param screen
 		 */
 		public function switchScreen(screen:GameScreen):void
@@ -466,10 +505,12 @@ package sketchproject.states
 
 			if (screen == mapScreen)
 			{
+				isMapActive = true;
 				hud.showHUD();
 			}
 			else
 			{
+				isMapActive = false;
 				hud.hideHUD();
 			}
 
@@ -478,37 +519,42 @@ package sketchproject.states
 		}
 
 		/**
-		 * 
+		 * Update screen and module component.
 		 */
 		public function update():void
 		{
 			hud.update();
-			mapScreen.update();
-			taskManager.update();
 			dialogOption.update();
-			congratulation.update();
+			unlockDialog.update();
+			
+			if (isMapActive)
+			{
+				mapScreen.update();
+				taskManager.update();
+			}
 		}
 
 		/**
-		 * 
+		 * Release all resources.
 		 */
 		public function destroy():void
 		{
 			hud.destroy();
 			mapScreen.destroy();
-			dialogOption.removeFromParent(false);
-			dialogHelp.removeFromParent(false);
-			dialogProfile.removeFromParent(false);
+			dialogOption.removeFromParent();
+			dialogHelp.removeFromParent();
+			dialogProfile.removeFromParent();
 			removeFromParent(true);
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * Print current state.
+		 *
+		 * @return
 		 */
 		public function toString():String
 		{
-			return "sketchproject.modules.states.VacationState";
+			return "sketchproject.states.PlayState";
 		}
 	}
 }

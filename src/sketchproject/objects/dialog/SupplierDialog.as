@@ -286,7 +286,7 @@ package sketchproject.objects.dialog
 								dialogInfo.dialogMessage = "Your asset "+upgrade.type+" has upgraded to level "+upgrade.level;
 								dialogInfo.openDialog();
 																
-								var asset:String 		= server.received.player_asset_var;								
+								var asset:String 		= server.received.player_asset_var;	
 								if(JSON.parse(asset) as Array != null)		
 									Data.asset = JSON.parse(asset) as Array;
 								

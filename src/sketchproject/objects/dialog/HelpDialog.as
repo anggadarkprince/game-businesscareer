@@ -58,7 +58,7 @@ package sketchproject.objects.dialog
 		{
 			super();
 
-			fireworkManager = new FireworkManager(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 
 			pageActive = 1;
 

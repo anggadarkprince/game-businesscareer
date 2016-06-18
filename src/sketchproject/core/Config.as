@@ -167,7 +167,6 @@ package sketchproject.core
 		/** temporary achievement **/
 		public static var achieved:Array = new Array();
 
-
 		/** initial/list pending transaction **/
 		public static var transactionList:Array = new Array();
 
