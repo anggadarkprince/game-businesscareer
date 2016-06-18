@@ -324,7 +324,6 @@ package sketchproject.states
 						});
 						loadGame.loadGameData();
 					}});
-
 				}
 				else
 				{

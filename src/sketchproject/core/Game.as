@@ -108,6 +108,7 @@ package sketchproject.core
 			data.loadTransactionData();
 			data.loadWeatherData();
 			data.loadAdvertisementData();
+			data.loadGameSession();
 			data.loadData();
 		}
 
@@ -119,7 +120,7 @@ package sketchproject.core
 		private function onGameDataLoaded(event:Event):void
 		{
 			Assets.init();
-			changeState(PRELOADING_STATE);
+			changeState(MENU_STATE);
 			addEventListener(Event.ENTER_FRAME, update);
 			DataManager.traceGameData();
 		}

@@ -408,6 +408,40 @@ package sketchproject.core
 			advertisementLoaded = true;
 			gameDataLoaded();
 		}
+		
+		/**
+		 * Load game session
+		 */
+		public function loadGameSession():void
+		{
+			var playerObject:Object = new Object();
+			playerObject.gameaccess = "businesscareer";
+			
+			var gameServer:ServerManager = new ServerManager("gameserver", playerObject);
+			gameServer.addEventListener(ServerManager.READY, function(event:flash.events.Event):void{
+				var result:String = gameServer.received.result_var;
+				if (result == "ready_session")
+				{
+					var player:Object = JSON.parse(gameServer.received.player_var as String);
+					Data.id = player["ply_id"];
+					Data.key = player["ply_key"];
+					Data.username = player["ply_email"];
+					Data.name = player["ply_name"];
+					Data.nickname = player["ply_name"].toString().split(" ")[0];
+					
+					var isFirstPlay:String = gameServer.received.game_status;
+					if (isFirstPlay == "load")
+					{
+						Config.firstPlay = false;
+					}
+					else if (isFirstPlay == "setup")
+					{
+						Config.firstPlay = true;
+					}
+				}
+			});
+			gameServer.sendRequest();
+		}
 
 		/**
 		 * Check if all data has been loaded.
