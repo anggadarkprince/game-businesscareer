@@ -32,6 +32,7 @@ package sketchproject.managers
 		private var coin:*;
 
 		private var fireworkManager:FireworkManager;
+		private var server:DataManager;
 
 		private var generate:int;
 		private var type:String;
@@ -51,10 +52,12 @@ package sketchproject.managers
 		public function RewardManager(typeReward:String = REWARD_COIN, spawnRate:String = SPAWN_AVERAGE, isReward:Boolean = true, container:DisplayObjectContainer = null)
 		{
 			listItem = new Array();
+			
+			server = new DataManager();
 
 			this.isReward = isReward;
 			this.container = container;
-			fireworkManager = new FireworkManager(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 
 			initialize(typeReward, spawnRate);
 		}
@@ -128,7 +131,8 @@ package sketchproject.managers
 					{
 						Data.point -= reward;
 					}
-				}
+				}				
+				server.saveGameData();
 			}
 
 			if (generate == 1)
