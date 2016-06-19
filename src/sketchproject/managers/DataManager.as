@@ -42,7 +42,7 @@ package sketchproject.managers
 			gameObject.personalObjective = Data.personalObjective;
 			gameObject.businessPlan = Data.businessPlan;
 			gameObject.financing = Data.financing;
-			gameObject.instalment = Data.instalment;
+			gameObject.instalment = Data.installment;
 			gameObject.weather = JSON.stringify(Data.weather);
 			gameObject.event = JSON.stringify(Data.event);
 			gameObject.tasks = JSON.stringify(Data.tasks);
@@ -248,7 +248,7 @@ package sketchproject.managers
 				Data.personalObjective = gameData.gme_personal_objective;
 				Data.businessPlan = gameData.gme_business_plan;
 				Data.financing = gameData.gme_financing;
-				Data.instalment = gameData.gme_instalment;
+				Data.installment = gameData.gme_instalment;
 				Data.weather = JSON.parse(gameData.gme_weather) as Array;
 				Data.event = JSON.parse(gameData.gme_event) as Array;
 				Data.tasks = JSON.parse(gameData.gme_task) as Array;
@@ -393,7 +393,7 @@ package sketchproject.managers
 			trace("---------------------------------------");
 
 			trace("playtime", Data.financing);
-			trace("instalment", Data.instalment);
+			trace("instalment", Data.installment);
 			trace("weather", JSON.stringify(Data.weather));
 			trace("event", JSON.stringify(Data.event));
 			trace("tasks", JSON.stringify(Data.tasks));

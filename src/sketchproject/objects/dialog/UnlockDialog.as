@@ -2,18 +2,17 @@ package sketchproject.objects.dialog
 {
 	import com.greensock.TweenMax;
 	import com.greensock.easing.Back;
-
+	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-
+	
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IDialog;
 	import sketchproject.managers.CelebrateManager;
 	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
-	import sketchproject.managers.ServerManager;
-
+	
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;

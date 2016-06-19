@@ -23,7 +23,7 @@ package sketchproject.core
 		public static var personalObjective:String 	= "No Objective";
 		public static var businessPlan:String 		= "No Business Plan";
 		public static var financing:String 			= "DEBT";
-		public static var instalment:uint 			= 0;
+		public static var installment:uint 			= 0;
 		public static var shoppingStreet:String		= "Vinichles are not permitted on Main Street in the Shopping Distric todah, as we create an outdor mail from 10am to 5px. Music and entertainment will be provided at not change. have a great day!";		
 		public static var weather:Array 			= new Array();
 		public static var event:Array 				= new Array();

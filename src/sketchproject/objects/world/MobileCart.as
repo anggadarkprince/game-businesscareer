@@ -12,7 +12,7 @@ package sketchproject.objects.world
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
 	import sketchproject.managers.FireworkManager;
-	import sketchproject.objects.BallonTips;
+	import sketchproject.objects.Ballontips;
 	import sketchproject.objects.Tooltips;
 	import sketchproject.objects.dialog.TipsDialog;
 	import sketchproject.utilities.DayCounter;
@@ -57,7 +57,7 @@ package sketchproject.objects.world
 
 		private var tipsOfTheDay:TipsDialog;
 
-		private var ballon:BallonTips;
+		private var ballon:Ballontips;
 		private var showTips:Tooltips;
 
 		private var myTimer:Timer = new Timer(20000);
@@ -188,7 +188,7 @@ package sketchproject.objects.world
 			label.hAlign = HAlign.CENTER;
 			addChild(label);
 
-			ballon = new BallonTips("Call Me", true, true);
+			ballon = new Ballontips("Call Me", true, true);
 			ballon.x = -15;
 			ballon.y = 250;
 			ballon.scaleX = 0;

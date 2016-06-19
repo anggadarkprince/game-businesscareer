@@ -251,12 +251,12 @@ package sketchproject.objects.startup
 			if (listSeed.selectedIndex == 0)
 			{
 				Data.financing = "DEBT";
-				Data.instalment = 8000000;
+				Data.installment = 0;
 			}
 			else
 			{
 				Data.financing = "EQUITY";
-				Data.instalment = 0;
+				Data.installment = 8000000;
 			}
 		}
 	}

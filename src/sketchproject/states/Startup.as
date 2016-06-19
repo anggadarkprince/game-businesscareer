@@ -106,7 +106,7 @@ package sketchproject.states
 		 */
 		public function initialize():void
 		{
-			fireworkManager = new FireworkManager(Game.overlayStage);
+			fireworkManager = FireworkManager.getInstance(Game.overlayStage);
 
 			showTips = new Tooltips();
 			showTips.tipsDirection(Tooltips.TIPS_LEFT);

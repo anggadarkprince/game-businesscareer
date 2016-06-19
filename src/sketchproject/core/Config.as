@@ -174,7 +174,7 @@ package sketchproject.core
 		public static var emotion:Array = [["emotion_satisfied", "Satisfied", "Fast Serve, good morale", 20], ["emotion_happy", "Happy", "Fast Serve or good morale", 20], ["emotion_squint", "Squint", "Average Serve, morale", 20], ["emotion_frown", "Frown", "Item unavailable", 20], ["emotion_angry", "Angry", "Bad Serve, morale", 20],];
 
 		/** marketshare information **/
-		public static var marketShare:Array = [[0, 0xff5053, "Player"], [0, 0x06cffd, "Competitor 1"], [0, 0x96ce00, "Competitor 2"]];
+		public static var marketShare:Array = [[0, 0xff5053, "Player"], [0, 0x06cffd, "Shop 1"], [0, 0x96ce00, "Shop 2"]];
 
 		
 		/** district coordinate **/

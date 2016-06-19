@@ -12,7 +12,7 @@ package sketchproject.states
 	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.ServerManager;
 	import sketchproject.managers.TaskManager;
-	import sketchproject.objects.QuickHelp;
+	import sketchproject.objects.Gametips;
 	import sketchproject.objects.dialog.AvatarDialog;
 	import sketchproject.objects.dialog.BoosterDialog;
 	import sketchproject.objects.dialog.CompleteDialog;
@@ -146,12 +146,6 @@ package sketchproject.states
 			});
 			Game.overlayStage.addChild(dialogInfo);
 
-			dialogPost = new PostDialog("Loan", 0, false, false);
-			dialogPost.x = stage.stageWidth * 0.5;
-			dialogPost.y = stage.stageHeight * 0.5;
-			dialogPost.addEventListener(PostDialog.POSTING, recallPosting);
-			Game.overlayStage.addChild(dialogPost);
-
 			hud = new GameMenu();
 
 			hud.addEventListener(NavigationEvent.SWITCH, onTriggered);
@@ -252,7 +246,7 @@ package sketchproject.states
 			if (Config.firstOpen)
 			{
 				Config.firstOpen = false;
-				var quickHelp:QuickHelp = new QuickHelp();
+				var quickHelp:Gametips = new Gametips();
 				quickHelp.x = stage.stageWidth * 0.5;
 				quickHelp.y = stage.stageHeight * 0.5;
 				quickHelp.addEventListener(DialogBoxEvent.CLOSED, onOpenShop);
@@ -280,12 +274,21 @@ package sketchproject.states
 
 		/**
 		 * Open post transaction if game is played for the first time.
-		 * 
+		 *
 		 * @param event
 		 */
 		private function onOpenShop(event:Event):void
 		{
-			initialPosting();
+			if (Config.firstPlay)
+			{
+				dialogPost = new PostDialog("Loan", 0, false, false);
+				dialogPost.x = stage.stageWidth * 0.5;
+				dialogPost.y = stage.stageHeight * 0.5;
+				dialogPost.addEventListener(PostDialog.POSTING, recallPosting);
+				Game.overlayStage.addChild(dialogPost);
+
+				initialPosting();
+			}
 		}
 
 		/**
