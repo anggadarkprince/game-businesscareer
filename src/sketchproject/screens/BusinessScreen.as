@@ -13,6 +13,11 @@ package sketchproject.screens
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
+	/**
+	 * Manage business schedule, basic info, atribute and features.
+	 * 
+	 * @author Angga
+	 */
 	public class BusinessScreen extends GameScreen
 	{
 		private var shop:ShopFrame;
@@ -27,6 +32,11 @@ package sketchproject.screens
 		
 		private var hud:GameMenu;
 		
+		/**
+		 * Default constructor of BusinessScreen.
+		 * 
+		 * @param hud
+		 */
 		public function BusinessScreen(hud:GameMenu)
 		{
 			super();
@@ -41,6 +51,7 @@ package sketchproject.screens
 			addChild(schedule);
 			
 			startup = new StartupFrame();
+			startup.y = 10;
 			addChild(startup);
 			
 			home = new HomeFrame();
@@ -81,38 +92,59 @@ package sketchproject.screens
 			switchPage(shop);
 		}
 		
+		/**
+		 * Home sub menu of business triggered, switch screen into home feature.
+		 * 
+		 * @param event
+		 */
 		private function onHomeTriggered(event:Event):void
 		{
-			home.updateInfo();
 			switchPage(home);
 			Assets.sfxChannel = Assets.sfxHomeStatistic.play(0,0,Assets.sfxTransform);
 			fireworkManager.spawn(Game.cursor.x, Game.cursor.y);
 		}
 		
-		private function onStartupTriggered():void
+		/**
+		 * Startup sub menu of business triggered, switch screen into startup business.
+		 * 
+		 * @param event
+		 */
+		private function onStartupTriggered(event:Event):void
 		{
-			startup.updateAttribute();
 			switchPage(startup);
 			Assets.sfxChannel = Assets.sfxBusinessStartup.play(0,0,Assets.sfxTransform);
 			fireworkManager.spawn(Game.cursor.x, Game.cursor.y);
 		}
 		
-		private function onScheduleTriggered():void
+		/**
+		 * Schedule sub menu of business triggered, switch screen manage shop scredules.
+		 * 
+		 * @param event
+		 */
+		private function onScheduleTriggered(event:Event):void
 		{
-			schedule.updateTimeline();
 			switchPage(schedule);
 			Assets.sfxChannel = Assets.sfxBusinessOperation.play(0,0,Assets.sfxTransform);
 			fireworkManager.spawn(Game.cursor.x, Game.cursor.y);
 		}
 		
-		private function onShopTriggered():void
+		/**
+		 * Shop sub menu of business triggered, switch screen show basic information.
+		 * 
+		 * @param event
+		 */
+		private function onShopTriggered(event:Event):void
 		{
-			shop.updateStatus();
 			switchPage(shop);
 			Assets.sfxChannel = Assets.sfxShopOverview.play(0,0,Assets.sfxTransform);
 			fireworkManager.spawn(Game.cursor.x, Game.cursor.y);
 		}
 		
+		/**
+		 * Switch screen, hide all screen then visible passed screen.
+		 * 
+		 * @param page
+		 */
 		private function switchPage(page:Sprite):void
 		{
 			shop.visible = false;
@@ -123,6 +155,9 @@ package sketchproject.screens
 			page.visible = true;
 		}
 		
+		/**
+		 * Update all screens content.
+		 */
 		public function update():void
 		{
 			shop.updateStatus();

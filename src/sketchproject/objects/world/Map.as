@@ -441,23 +441,23 @@ package sketchproject.objects.world
 			if(isSimulation){
 				checkRadianceAtmosphere(hour);
 				checkEventOperation(hour);
+				
+				if (int(Data.weather[0][0]) <= 3)
+				{
+					rainManager.update();
+				}
+				
+				if (key.isDown(Keyboard.SPACE))
+				{
+					levelMap.visible = false;
+				}
+				if (key.isDown(Keyboard.CONTROL))
+				{
+					levelMap.visible = true;
+				}
 			}
-
-			if (int(Data.weather[0][0]) <= 3)
-			{
-				rainManager.update();
-			}
-
+			
 			depthSort();
-
-			if (key.isDown(Keyboard.SPACE))
-			{
-				levelMap.visible = false;
-			}
-			if (key.isDown(Keyboard.CONTROL))
-			{
-				levelMap.visible = true;
-			}
 		}
 
 		/**

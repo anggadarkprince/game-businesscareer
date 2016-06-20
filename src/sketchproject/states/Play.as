@@ -38,7 +38,7 @@ package sketchproject.states
 	import sketchproject.screens.IssuesScreen;
 	import sketchproject.screens.MapScreen;
 	import sketchproject.screens.ProductScreen;
-	
+
 	import starling.display.Sprite;
 	import starling.events.Event;
 
@@ -264,7 +264,7 @@ package sketchproject.states
 
 		/**
 		 * Dispatched from option dialog to check sound status is muted or loud.
-		 * 
+		 *
 		 * @param event
 		 */
 		private function onSoundChanged(event:Event):void
@@ -304,13 +304,13 @@ package sketchproject.states
 					dialogPost.transactionValue = Config.transactionList[0][1];
 					dialogPost.preparePosting();
 					dialogPost.openDialog();
-					
+
 					Config.transactionList.shift();
 				}
 				else
 				{
 					Config.firstPlay = false;
-					
+
 					var save:DataManager = new DataManager();
 					save.saveGameData();
 				}
@@ -319,7 +319,7 @@ package sketchproject.states
 
 		/**
 		 * Recall posting dialog until initial transaction is empty.
-		 * 
+		 *
 		 * @param event
 		 */
 		private function recallPosting(event:Event):void
@@ -335,26 +335,29 @@ package sketchproject.states
 			if (Config.achieved.length > 0)
 			{
 				var unlock:Object = Config.achieved.shift();
-				unlockDialog.unlockInfo = "Kamu membuka achievement " + unlock.ach_achievement;
-				unlockDialog.unlockIcon = unlock.ach_atlas;
-				unlockDialog.openDialog();
-				
-				panelAchievement.updateEarned();
-				
-				Data.point += int(unlock.ach_reward);
+				if (unlock != null)
+				{
+					unlockDialog.unlockInfo = "Kamu membuka achievement " + unlock.ach_achievement;
+					unlockDialog.unlockIcon = unlock.ach_atlas;
+					unlockDialog.openDialog();
 
-				var gameObject:Object = new Object();
-				gameObject.token = Data.key;
-				gameObject.achievement = unlock.ach_id;
+					panelAchievement.updateEarned();
 
-				var server:ServerManager = new ServerManager("achievement/unlock_achievement", gameObject);
-				server.sendRequest();
+					Data.point += int(unlock.ach_reward);
+
+					var gameObject:Object = new Object();
+					gameObject.token = Data.key;
+					gameObject.achievement = unlock.ach_id;
+
+					var server:ServerManager = new ServerManager("achievement/unlock_achievement", gameObject);
+					server.sendRequest();
+				}
 			}
 		}
 
 		/**
 		 * Event handler when player try to zoom out the map.
-		 * 
+		 *
 		 * @param event
 		 */
 		private function onZoomOut(event:ZoomEvent):void
@@ -370,7 +373,7 @@ package sketchproject.states
 
 		/**
 		 * Event handler when player try to zoom in the map.
-		 * 
+		 *
 		 * @param event
 		 */
 		private function onZoomIn(event:ZoomEvent):void
@@ -386,7 +389,7 @@ package sketchproject.states
 
 		/**
 		 * Event handler when player hit the menu.
-		 * 
+		 *
 		 * @param event
 		 */
 		private function onTriggered(event:NavigationEvent):void
@@ -448,7 +451,7 @@ package sketchproject.states
 					game.changeState(Game.TRANSITION_STATE);
 					break;
 
-				/** Dashboard menu list **/				
+				/** Dashboard menu list **/
 				case NavigationEvent.NAVIGATE_MAP:
 					trace("[MENU] launch map");
 					switchScreen(mapScreen);
@@ -483,7 +486,7 @@ package sketchproject.states
 		}
 
 		/**
-		 * Change current active screen, set visible false all, 
+		 * Change current active screen, set visible false all,
 		 * then visible the passed screen.
 		 *
 		 * @param screen
@@ -529,7 +532,7 @@ package sketchproject.states
 			hud.update();
 			dialogOption.update();
 			unlockDialog.update();
-			
+
 			if (isMapActive)
 			{
 				mapScreen.update();

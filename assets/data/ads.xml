@@ -5,9 +5,9 @@
 		<atlas>adver_tv</atlas>
 		<visibility>
 			<none>0</none>
-			<low>30000</low>
-			<average>40000</average>
-			<high>60000</high>
+			<low>3000</low>
+			<average>4000</average>
+			<high>6000</high>
 		</visibility>
     </advertisement>
 	<advertisement id="2">
@@ -15,9 +15,9 @@
 		<atlas>adver_internet</atlas>
 		<visibility>
 			<none>0</none>
-			<low>15000</low>
-			<average>20000</average>
-			<high>30000</high>
+			<low>1500</low>
+			<average>2000</average>
+			<high>3000</high>
 		</visibility>
     </advertisement>
 	<advertisement id="3">
@@ -25,9 +25,9 @@
 		<atlas>adver_radio</atlas>
 		<visibility>
 			<none>0</none>
-			<low>20000</low>
-			<average>25000</average>
-			<high>35000</high>
+			<low>2000</low>
+			<average>2500</average>
+			<high>3500</high>
 		</visibility>
     </advertisement>
 	<advertisement id="4">
@@ -35,9 +35,9 @@
 		<atlas>adver_event</atlas>
 		<visibility>
 			<none>0</none>
-			<low>30000</low>
-			<average>35000</average>
-			<high>55000</high>
+			<low>3000</low>
+			<average>3500</average>
+			<high>5500</high>
 		</visibility>
     </advertisement>
 	<advertisement id="5">
@@ -45,9 +45,9 @@
 		<atlas>adver_newspaper</atlas>
 		<visibility>
 			<none>0</none>
-			<low>30000</low>
-			<average>40000</average>
-			<high>70000</high>
+			<low>3000</low>
+			<average>4000</average>
+			<high>7000</high>
 		</visibility>
     </advertisement>
 	<advertisement id="6">
@@ -55,9 +55,9 @@
 		<atlas>adver_billboard</atlas>
 		<visibility>
 			<none>0</none>
-			<low>30000</low>
-			<average>40000</average>
-			<high>60000</high>
+			<low>3000</low>
+			<average>4000</average>
+			<high>6000</high>
 		</visibility>
     </advertisement>
 </data>

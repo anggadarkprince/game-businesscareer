@@ -33,8 +33,8 @@ package sketchproject.objects.dialog
 		private var buttonMenu:Button;
 		private var buttonLogout:Button;
 
-		private var dialogBack:NativeDialog = new NativeDialog(NativeDialog.DIALOG_QUESTION, "Back To Menu", "Do you want back to Menu?");
-		private var dialogLogout:NativeDialog = new NativeDialog(NativeDialog.DIALOG_QUESTION, "Logout Confirmation", "Are you sure sign out now?");
+		private var dialogBack:NativeDialog = new NativeDialog(NativeDialog.DIALOG_QUESTION, "Back To Menu", "Kembali ke Main Menu?");
+		private var dialogLogout:NativeDialog = new NativeDialog(NativeDialog.DIALOG_QUESTION, "Logout Confirmation", "Kamu yakin ingin sign out?");
 
 		private var game:Game;
 		private var option:OptionDialog;

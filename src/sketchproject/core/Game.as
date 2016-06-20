@@ -177,6 +177,7 @@ package sketchproject.core
 					break;
 
 				case WORLD_STATE:
+					Assets.playBgm(Assets.BGM_TOWN);
 					currentState = new Gameworld(this);
 					break;
 

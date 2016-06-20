@@ -88,7 +88,7 @@ package sketchproject.objects.task
 							newNotification, 
 							0.7, 
 							{
-								repeat: 5, 
+								repeat: 10, 
 								x: newNotification.x + 30, 
 								yoyo: true, 
 								onComplete: function():void {

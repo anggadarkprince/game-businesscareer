@@ -27,28 +27,16 @@ package sketchproject.objects.world
 	 */
 	public class GameStats extends HeadUpDisplay
 	{
-		/**
-		 * 
-		 * @default 
-		 */
 		public static const SHOP_OPEN:String = "shopOpen";
-		/**
-		 * 
-		 * @default 
-		 */
 		public static const SHOP_CLOSE:String = "shopClose";
 
 		private var statsSales:StatsSalesDialog;
 		private var statsCustomer:StatsCustomerDialog;
 		private var statsShop:StatsShopDialog;
 		private var statsTrend:StatsTrendDialog;
-
-		private var statsContainer:Sprite;
-		/**
-		 * 
-		 * @default 
-		 */
+		
 		public var clock:Clock;
+		private var statsContainer:Sprite;
 		private var statsBackground:Image;
 		private var buttonShop:Button;
 		private var buttonTrend:Button;
@@ -89,7 +77,7 @@ package sketchproject.objects.world
 		private var checkClosingDiscount:Boolean = false;
 
 		/**
-		 * 
+		 * Default constructor of GameStats.
 		 */
 		public function GameStats()
 		{
