@@ -28,8 +28,8 @@ package sketchproject.objects.business
 
 		private var workAverage:TextField;
 		private var workTotal:TextField;
-		private var sallaryMonth:TextField;
-		private var sallaryDay:TextField;
+		private var salaryMonth:TextField;
+		private var salaryDay:TextField;
 
 		private var lineBar:Shape;
 
@@ -66,33 +66,33 @@ package sketchproject.objects.business
 			label.y = -175;
 			addChild(label);
 
-			label = new TextField(250, 50, "Est. sallary / month", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
+			label = new TextField(250, 50, "Est. salary / month", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
 			label.vAlign = VAlign.TOP;
 			label.hAlign = HAlign.LEFT;
 			label.x = -400;
 			label.y = -130;
 			addChild(label);
 
-			sallaryMonth = new TextField(250, 50, "IDR 500 K", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
-			sallaryMonth.vAlign = VAlign.TOP;
-			sallaryMonth.hAlign = HAlign.LEFT;
-			sallaryMonth.x = -250;
-			sallaryMonth.y = -130;
-			addChild(sallaryMonth);
+			salaryMonth = new TextField(250, 50, "IDR 500 K", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
+			salaryMonth.vAlign = VAlign.TOP;
+			salaryMonth.hAlign = HAlign.LEFT;
+			salaryMonth.x = -250;
+			salaryMonth.y = -130;
+			addChild(salaryMonth);
 
-			label = new TextField(250, 50, "Avg. sallary / day", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
+			label = new TextField(250, 50, "Avg. salary / day", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
 			label.vAlign = VAlign.TOP;
 			label.hAlign = HAlign.LEFT;
 			label.x = -400;
 			label.y = -110;
 			addChild(label);
 
-			sallaryDay = new TextField(250, 50, "IDR 3000", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
-			sallaryDay.vAlign = VAlign.TOP;
-			sallaryDay.hAlign = HAlign.LEFT;
-			sallaryDay.x = -250;
-			sallaryDay.y = -110;
-			addChild(sallaryDay);
+			salaryDay = new TextField(250, 50, "IDR 3000", Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x333333);
+			salaryDay.vAlign = VAlign.TOP;
+			salaryDay.hAlign = HAlign.LEFT;
+			salaryDay.x = -250;
+			salaryDay.y = -110;
+			addChild(salaryDay);
 
 			label = new TextField(250, 20, "Stress Chart", Assets.getFont(Assets.FONT_SSBOLD).fontName, 18, 0x333333);
 			label.vAlign = VAlign.TOP;
@@ -272,8 +272,8 @@ package sketchproject.objects.business
 		 */
 		public function updateInfo():void
 		{
-			sallaryDay.text = "IDR " + ValueFormatter.format(int(Math.round(Data.salesTotal / Data.playtime)));
-			sallaryMonth.text = "IDR " + ValueFormatter.format(int(Math.round(Data.salesTotal / Data.playtime * 30)));
+			salaryDay.text = "IDR " + ValueFormatter.format(int(Math.round(Data.salesTotal / Data.playtime)));
+			salaryMonth.text = "IDR " + ValueFormatter.format(int(Math.round(Data.salesTotal / Data.playtime * 30)));
 			workAverage.text = Data.workAvg.toString() + " Hours";
 			workTotal.text = Data.workTotal.toString() + " Hours";
 

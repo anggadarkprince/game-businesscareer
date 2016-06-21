@@ -3,18 +3,29 @@ package sketchproject.objects.adapter
 	import sketchproject.core.Assets;
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
-	import sketchproject.utilities.GameUtils;
-	
+
 	import starling.display.Sprite;
 	import starling.text.TextField;
 	import starling.utils.HAlign;
 
+	/**
+	 * Handle single employee data and avatar.
+	 *
+	 * @author Angga
+	 */
 	public class EmployeeAdapter extends Sprite
 	{
 		private var empIndex:int;
 		private var empId:int;
 		private var employeeName:TextField;
-		
+
+		/**
+		 * Default constructor of EmployeeAdapter.
+		 *
+		 * @param index
+		 * @param id
+		 * @param name
+		 */
 		public function EmployeeAdapter(index:int, id:int, name:String)
 		{
 			this.empIndex = index;
@@ -23,44 +34,89 @@ package sketchproject.objects.adapter
 			employeeName.hAlign = HAlign.LEFT;
 			addChild(employeeName);
 		}
-		
-		public function set employeeIndex(index:int):void{
+
+		/**
+		 * Set employee index.
+		 *
+		 * @param index
+		 */
+		public function set employeeIndex(index:int):void
+		{
 			this.empIndex = index;
 		}
-		
-		public function get employeeIndex():int{
+
+		/**
+		 * Get employee index.
+		 *
+		 * @return
+		 */
+		public function get employeeIndex():int
+		{
 			return empIndex;
 		}
-		
-		public function set employeeId(id:int):void{
+
+		/**
+		 * Set employee id.
+		 *
+		 * @param id
+		 */
+		public function set employeeId(id:int):void
+		{
 			this.empId = id;
 		}
-		
-		public function get employeeId():int{
+
+		/**
+		 * Get employee id.
+		 *
+		 * @return
+		 */
+		public function get employeeId():int
+		{
 			return empId;
 		}
-		
-		public function offer(sallary:int):Boolean{
+
+		/**
+		 * Offering salary to this employee.
+		 *
+		 * @param sallary which offered.
+		 * @return status this employee accept the offer or not
+		 */
+		public function offer(salary:int):Boolean
+		{
 			var minimum:int = int(Config.candidate[empIndex].emp_salary_goal);
-			var over:int = (10/100) * minimum;
+			var over:int = (10 / 100) * minimum;
 			var target:int = minimum + over + (Math.random() * over);
-			if(sallary >= target){				
+			if (salary >= target)
+			{
 				return true;
 			}
-			return false;			
+			return false;
 		}
-				
-		public function dismiss():Boolean{			
+
+		/**
+		 * Dismiss the employee.
+		 *
+		 * @return
+		 */
+		public function dismiss():Boolean
+		{
 			Data.employee[employeeIndex][16] = "dismiss";
 			return true;
 		}
-		
-		public function train():Boolean{
-			if(Math.random() < 0.5){
+
+		/**
+		 * Train the employee level.
+		 *
+		 * @return
+		 */
+		public function train():Boolean
+		{
+			if (Math.random() < 0.5)
+			{
 				Data.employee[employeeIndex][15]++;
 				return true;
 			}
-			return false;			
+			return false;
 		}
 	}
 }
