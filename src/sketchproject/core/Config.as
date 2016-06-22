@@ -11,8 +11,8 @@ package sketchproject.core
 		/** settings **/
 		public static var firstOpen:Boolean = true;
 		public static var firstPlay:Boolean = false;
-		public static var volbgm:uint = 0;
-		public static var volsfx:uint = 0;
+		public static var volbgm:uint = 2;
+		public static var volsfx:uint = 2;
 		public static var mode:String = "window";
 		public static var zoom:Number = 1;
 

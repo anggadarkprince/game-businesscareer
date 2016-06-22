@@ -286,17 +286,17 @@ package sketchproject.objects.world
 
 			if (touch.getTouch(buttonShop, TouchPhase.ENDED))
 			{
-				statsShop.openDialog();
+				//statsShop.openDialog();
 			}
 
 			if (touch.getTouch(buttonTrend, TouchPhase.ENDED))
 			{
-				statsTrend.openDialog();
+				//statsTrend.openDialog();
 			}
 
 			if (touch.getTouch(buttonView, TouchPhase.ENDED))
 			{
-				statsCustomer.openDialog();
+				//statsCustomer.openDialog();
 			}
 		}
 

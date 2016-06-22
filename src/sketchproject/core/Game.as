@@ -120,7 +120,7 @@ package sketchproject.core
 		private function onGameDataLoaded(event:Event):void
 		{
 			Assets.init();
-			changeState(MENU_STATE);
+			changeState(PRELOADING_STATE);
 			addEventListener(Event.ENTER_FRAME, update);
 			DataManager.traceGameData();
 		}

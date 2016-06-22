@@ -184,7 +184,7 @@ package sketchproject.modules
 
 			speed = 0.5 + Math.random();
 
-			baseCharacter = new MovieClip(Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTextures(npc + "_walk"), Math.ceil(25 * speed));
+			baseCharacter = new MovieClip(Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTextures(npc + "_walk"), Math.ceil(35 * speed));
 			baseCharacter.pivotX = -50 + baseCharacter.width * 0.5;
 			baseCharacter.pivotY = baseCharacter.height;
 			Starling.juggler.add(baseCharacter);

@@ -1268,11 +1268,11 @@ package sketchproject.modules
 			
 			// price
 			var price:Object = new Object();
-			price.food1 = 17;
+			price.food1 = 15;
 			price.food2 = 15;
-			price.food3 = 17;
+			price.food3 = 15;
 			price.drink1 = 12;
-			price.drink2 = 16;
+			price.drink2 = 14;
 			shop.price = price;
 			
 			// quality
@@ -1364,7 +1364,7 @@ package sketchproject.modules
 			// adver
 			var adver:Object = new Object();
 			adver.tv = 10;
-			adver.radio = 5;
+			adver.radio = 10;
 			adver.newspaper = 7;
 			adver.internet = 8;
 			adver.event = 6;
@@ -1373,11 +1373,11 @@ package sketchproject.modules
 			
 			// price
 			var price:Object = new Object();
-			price.food1 = 15;
-			price.food2 = 15;
-			price.food3 = 15;
-			price.drink1 = 10;
-			price.drink2 = 14;
+			price.food1 = 14;
+			price.food2 = 13;
+			price.food3 = 10;
+			price.drink1 = 12;
+			price.drink2 = 16;
 			shop.price = price;
 			
 			// quality

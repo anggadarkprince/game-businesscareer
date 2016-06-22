@@ -201,7 +201,7 @@
 		<description>Membayar beban pelatihan</description>
 	</transaction>
 	<transaction id="26">
-		<type>Instalment</type>
+		<type>Installment</type>
 		<name>Kamu membayar hutang kepada kreditor [value]. Post transaksi</name>
 		<hint>Jika kamu membayar Pinjaman [Loan] maka uang ditangan akan berkurang dan kewajiban [Liabilities] menjadi berkurang.</hint>
 		<debit>[Liabilities and Equity] Loans</debit>

@@ -28,7 +28,7 @@ package sketchproject.managers
 		 */
 		public function FireworkManager(parent:Sprite)
 		{
-			pool = new StarlingPool(FireworkParticle, 25);
+			pool = new StarlingPool(FireworkParticle, 35);
 			container = parent;
 		}
 

@@ -145,13 +145,13 @@ package sketchproject.objects.product.inventory
 			buttonRepair.alpha = 0;
 			addChild(buttonRepair);
 
-			dialogConfirm = new NativeDialog(NativeDialog.DIALOG_QUESTION, "Repair", "Do you want to repair asset?");
+			dialogConfirm = new NativeDialog(NativeDialog.DIALOG_QUESTION, "Repair", "Memperbaiki nilai ekonomis asset?");
 			dialogConfirm.x = Starling.current.stage.stageWidth * 0.5;
 			dialogConfirm.y = Starling.current.stage.stageHeight * 0.5;
 			dialogConfirm.addEventListener(DialogBoxEvent.CLOSED, onRepairConfirmed);
 			Game.overlayStage.addChild(dialogConfirm);
 
-			dialogInfo = new NativeDialog(NativeDialog.DIALOG_INFORMATION, "Information", "You don't have cash enough");
+			dialogInfo = new NativeDialog(NativeDialog.DIALOG_INFORMATION, "Information", "Kamu tidak punya cukup uang");
 			dialogInfo.x = Starling.current.stage.stageWidth * 0.5;
 			dialogInfo.y = Starling.current.stage.stageHeight * 0.5;
 			dialogInfo.addEventListener(DialogBoxEvent.CLOSED, function(event:DialogBoxEvent):void
@@ -217,6 +217,7 @@ package sketchproject.objects.product.inventory
 					server.addEventListener(ServerManager.READY, function(event:flash.events.Event):void
 					{
 						Game.loadingScreen.hide();
+						reset();
 					});
 					server.sendRequest();
 				});
@@ -237,6 +238,18 @@ package sketchproject.objects.product.inventory
 				depreciation += int(Data.asset[i].pas_depreciation);
 			}
 			depreciationText.text = "IDR " + ValueFormatter.format(depreciation, true);
+		}
+		
+		/**
+		 * Reset nilai depresiasi.
+		 */
+		public function reset():void
+		{
+			for (var i:uint = 0; i < Data.asset.length; i++)
+			{
+				Data.asset[i].pas_depreciation = 0;
+			}
+			depreciationText.text = "IDR 0";
 		}
 	}
 }

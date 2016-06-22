@@ -326,7 +326,7 @@ package sketchproject.states
 				initialEvent.generateWeather(true);
 				initialEvent.generateEvent();
 
-				if (Data.avatarName == "GameTester")
+				if (Data.avatarName == "GameTester" || Data.avatarName == "Tester")
 				{
 					trace("[CHEAT] Activated");
 					Data.cash = 999999999;
@@ -519,7 +519,6 @@ package sketchproject.states
 		public function destroy():void
 		{
 			removeEventListener(TouchEvent.TOUCH, onButtonSetupTouched);
-			fireworkManager.destroy();
 			configurationScreen.destroy();
 			parameterScreen.destroy();
 			removeFromParent(true);
