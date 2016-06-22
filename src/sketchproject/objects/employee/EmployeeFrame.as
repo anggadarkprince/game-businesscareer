@@ -4,7 +4,6 @@ package sketchproject.objects.employee
 	import com.greensock.easing.Cubic;
 	
 	import flash.events.Event;
-	import flash.events.IOErrorEvent;
 	
 	import sketchproject.core.Assets;
 	import sketchproject.core.Config;
@@ -561,14 +560,8 @@ package sketchproject.objects.employee
 				}
 			}
 
-			if (Data.employee[currentEmployee.employeeIndex].pem_level >= 5)
-			{
-				buttonTrain.visible = false;
-			}
-			else
-			{
-				buttonTrain.visible = true;
-			}
+			var emp:Object = Data.employee[currentEmployee.employeeIndex];
+			buttonTrain.enabled = !(emp.pem_morale >= 10 && emp.pem_productivity >= 10 && emp.pem_services >= 10);
 		}
 	}
 }

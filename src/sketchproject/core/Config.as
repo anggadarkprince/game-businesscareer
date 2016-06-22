@@ -152,6 +152,9 @@ package sketchproject.core
 		/** account master for select drop down **/
 		public static var account:Array = new Array();
 
+		/** product master **/
+		public static var product:Array = new Array();
+		
 		/** material master **/
 		public static var material:Array = new Array();
 

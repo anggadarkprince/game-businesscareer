@@ -132,7 +132,6 @@ package sketchproject.objects.finance
 						dataReport.push(row);
 					}
 				}
-
 			}
 
 			TableGenerator.headerColor = 0xfe7877;

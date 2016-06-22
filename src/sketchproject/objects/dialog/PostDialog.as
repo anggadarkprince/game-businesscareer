@@ -17,6 +17,7 @@ package sketchproject.objects.dialog
 	import sketchproject.managers.FireworkManager;
 	import sketchproject.managers.RewardManager;
 	import sketchproject.managers.ServerManager;
+	import sketchproject.utilities.ValueFormatter;
 	
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -210,7 +211,7 @@ package sketchproject.objects.dialog
 			{
 				if (this.type == Config.transaction[i][1])
 				{
-					transaction = String(Config.transaction[i][2]).split("[value]").join(value.toString());
+					transaction = String(Config.transaction[i][2]).split("[value]").join(ValueFormatter.numberFormat(value, "IDR"));
 					hint = Config.transaction[i][3];
 					keyDebit = Config.transaction[i][4];
 					keyCredit = Config.transaction[i][5];

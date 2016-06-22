@@ -234,7 +234,7 @@ package starling.display
         {
             var index1:int = getChildIndex(child1);
             var index2:int = getChildIndex(child2);
-			trace(index1,index2);
+			
             if (index1 == -1 || index2 == -1) throw new ArgumentError("Not a child of this container");
             swapChildrenAt(index1, index2);
         }

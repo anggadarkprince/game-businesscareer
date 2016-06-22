@@ -223,6 +223,7 @@ package sketchproject.managers
 			var candidate:String = gameServer.received.candidate_var;
 			var employee:String = gameServer.received.employee_var;
 			var product:String = gameServer.received.product_var;
+			var playerProduct:String = gameServer.received.player_product_var;
 			var productMaterial:String = gameServer.received.product_material_var;
 			var material:String = gameServer.received.material_var;
 			var playerMaterial:String = gameServer.received.player_material_var;
@@ -299,14 +300,19 @@ package sketchproject.managers
 				Data.asset = JSON.parse(playerAsset) as Array;
 
 			if (JSON.parse(product) as Array != null)
+				Config.product = JSON.parse(product) as Array;
+			
+			if (JSON.parse(playerProduct) as Array != null && (JSON.parse(playerProduct) as Array).length > 0)
+				Data.product = JSON.parse(playerProduct) as Array;
+			else
 				Data.product = JSON.parse(product) as Array;
 
 			if (JSON.parse(productMaterial) as Array != null)
 			{
-				Data.productInventory = JSON.parse(productMaterial) as Array;
-				for (var i:int = 0; i < Data.productInventory.length; i++)
+				Data.productMaterial = JSON.parse(productMaterial) as Array;
+				for (var i:int = 0; i < Data.productMaterial.length; i++)
 				{
-					Data.productInventory[i].material = String(Data.productInventory[i].material).split(",");
+					Data.productMaterial[i].material = String(Data.productMaterial[i].material).split(",");
 				}
 			}
 

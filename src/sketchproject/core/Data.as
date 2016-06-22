@@ -95,6 +95,10 @@ package sketchproject.core
 		public static var discountFirst:int			= 0;
 		public static var discountLast:int			= 0;
 		
+		/** instant improvement */
+		public static var quality:int				= 0;
+		public static var appearance:int			= 0;
+		
 		/** player achieved **/
 		public static var achievement:Array 		= new Array();
 							
@@ -111,6 +115,6 @@ package sketchproject.core
 		public static var asset:Array 				= new Array();
 		
 		/** material product **/
-		public static var productInventory:Array 	= new Array();
+		public static var productMaterial:Array 	= new Array();
 	}
 }

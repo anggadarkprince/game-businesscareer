@@ -28,7 +28,7 @@ package sketchproject.utilities
 			{
 				if (isRounded)
 				{
-					numberformat = Math.round(value / 1000) + " K";
+					numberformat = numberFormat(Math.round(value / 1000)) + " K";
 				}
 				else
 				{
@@ -39,7 +39,7 @@ package sketchproject.utilities
 			{
 				if (isRounded)
 				{
-					numberformat = Math.round(value / 1000000) + " M";
+					numberformat = numberFormat(Math.round(value / 1000000)) + " M";
 				}
 				else
 				{
@@ -50,7 +50,7 @@ package sketchproject.utilities
 			{
 				if (isRounded)
 				{
-					numberformat = Math.round(value / 1000000000) + " B";
+					numberformat = numberFormat(Math.round(value / 1000000000)) + " B";
 				}
 				else
 				{

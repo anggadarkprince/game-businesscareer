@@ -558,6 +558,7 @@ package sketchproject.objects.world
 			avatar.updateAvatar();
 			textPoint.text = ValueFormatter.format(Data.point) + " PTS";
 			textProfit.text = "IDR " + ValueFormatter.format(Data.cash);
+			textCustomer.text = int(Data.customer).toString();
 			selectMenu.rotation += 0.1;
 		}
 

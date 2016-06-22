@@ -405,18 +405,9 @@ package sketchproject.objects.dialog
 				}
 			}
 
-			if (employee.pem_morale == 10)
-			{
-				buttonTrainMorale.enabled = false;
-			}
-			if (employee.pem_productivity == 10)
-			{
-				buttonTrainProductivity.enabled = false;
-			}
-			if (employee.pem_services == 10)
-			{
-				buttonTrainServices.enabled = false;
-			}
+			buttonTrainMorale.enabled = (employee.pem_morale < 10);
+			buttonTrainProductivity.enabled = (employee.pem_productivity < 10);
+			buttonTrainServices.enabled = (employee.pem_services < 10);
 
 			for (var i:int = 0; i < 5; i++)
 			{
