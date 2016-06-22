@@ -1,7 +1,9 @@
 package sketchproject.modules.states
 {
 	import flash.geom.Point;
-
+	
+	import sketchproject.core.Config;
+	import sketchproject.core.Data;
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.WorldManager;
 	import sketchproject.modules.Agent;
@@ -51,9 +53,10 @@ package sketchproject.modules.states
 			updated = false;
 
 			shopCoordinate = new Point();
-
-			var product:String = Shop.productList[GameUtils.randomFor(Shop.productList.length) - 1];
-
+			
+			var productIndex:int = GameUtils.randomFor(Shop.productList.length) - 1;
+			var product:String = Shop.productList[productIndex];
+			
 			if (agent.role == Agent.ROLE_FREEMAN)
 			{
 				shop = decisionFunction.accidentalSelection(WorldManager.instance.listShop, agent);
@@ -103,6 +106,122 @@ package sketchproject.modules.states
 			trace("        |-- [state:eating] transaction #", shop.transactionTotal, "profit", shop.grossProfit);
 			trace("        |-- [state:eating] destination", shopCoordinate);
 			trace("        |-- [state:eating] path", agent.path);
+			
+			// calculate marketplace
+			var a:int = 0;
+			var b:int = 0;
+			var c:int = 0;
+			
+			for (var j:int = 0; j < WorldManager.instance.listAgent.length; j++)
+			{
+				if (WorldManager.instance.listAgent[j].choice == 1)
+				{
+					a++;
+				}
+				else if (WorldManager.instance.listAgent[j].choice == 2)
+				{
+					b++;
+				}
+				else if (WorldManager.instance.listAgent[j].choice == 3)
+				{
+					c++;
+				}
+			}
+			
+			// update marketshare list
+			var aMarketshare:int = 100 * a / WorldManager.instance.listAgent.length;
+			var bMarketshare:int = 100 * b / WorldManager.instance.listAgent.length;
+			var cMarketshare:int = 100 * c / WorldManager.instance.listAgent.length;
+			
+			Shop(WorldManager.instance.listShop[0]).updateMarkershare(aMarketshare);
+			Shop(WorldManager.instance.listShop[1]).updateMarkershare(bMarketshare);
+			Shop(WorldManager.instance.listShop[2]).updateMarkershare(cMarketshare);
+			
+			Config.marketShare[0][0] = aMarketshare;
+			Config.marketShare[1][0] = bMarketshare;
+			Config.marketShare[2][0] = cMarketshare;
+			
+			Data.customer = a;
+			Data.transactionAllShop++;
+			
+			if(shop.shopId == 1 && buyProduct(productIndex)){	
+				if(product == Shop.productList[0]){
+					Data.soldFood1++;
+				} else if(product == Shop.productList[1]){
+					Data.soldFood2++;
+				} else if(product == Shop.productList[2]){
+					Data.soldFood3++;
+				} else if(product == Shop.productList[3]){
+					Data.soldDrink1++;
+				} else if(product == Shop.productList[4]){
+					Data.soldDrink2++;
+				}
+				Data.transaction++;
+				Data.marketshare = Shop(WorldManager.instance.listShop[0]).marketshare;
+				Data.salesToday += int(Data.product[productIndex].prd_price);
+				trace("        |-- [state:eating] product price", int(Data.product[productIndex].prd_price));
+			}			
+		}
+		
+		/**
+		 * Check stock product is available.
+		 * 
+		 * @param productIndex
+		 * @return 
+		 */
+		private function buyProduct(productIndex:int):Boolean
+		{
+			// check if material complete
+			var totalMatch:int = 0;
+			var dataNonExpired:Array = [12, 16, 17, 18, 19];
+			for (var i:int = 0; i < Data.productMaterial[productIndex].material.length; i++)
+			{
+				for (var j:int = 0; j < Data.material.length; j++)
+				{
+					if (Data.productMaterial[productIndex].material[i] == Data.material[j].mtr_id)
+					{
+						var noExpired:Boolean = false;
+						for (var k:int = 0; k < dataNonExpired.length; k++)
+						{
+							if(dataNonExpired[k] == Data.material[j].mtr_id){
+								noExpired = true;
+								break;
+							}
+						}
+						if(!noExpired){
+							if(Data.material[j].pma_expired_remaining > 0){								
+								totalMatch++;
+							}
+						}
+						else{
+							totalMatch++;
+						}
+						break;
+					}
+				}
+			}
+			
+			// remove 1 material
+			if (totalMatch >= Data.productMaterial[productIndex].material.length)
+			{
+				for (i = 0; i < Data.productMaterial[productIndex].material.length; i++)
+				{
+					for (j = 0; j < Data.material.length; j++)
+					{
+						if (Data.productMaterial[productIndex].material[i] == Data.material[j].mtr_id)
+						{
+							if(Data.material[j].pma_stock > 0){
+								Data.material[j].pma_stock--;
+							}
+						}
+					}
+				}
+				
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 
 		/**

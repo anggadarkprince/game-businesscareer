@@ -3,6 +3,8 @@ package sketchproject.objects.world
 	import sketchproject.core.Assets;
 	import sketchproject.core.Data;
 	import sketchproject.core.Game;
+	import sketchproject.managers.WorldManager;
+	import sketchproject.modules.Shop;
 	import sketchproject.objects.dialog.StatsCustomerDialog;
 	import sketchproject.objects.dialog.StatsSalesDialog;
 	import sketchproject.objects.dialog.StatsShopDialog;
@@ -22,7 +24,8 @@ package sketchproject.objects.world
 	import starling.utils.VAlign;
 
 	/**
-	 * 
+	 * Show the stats bar in bottom when simulation started.
+	 *
 	 * @author Angga
 	 */
 	public class GameStats extends HeadUpDisplay
@@ -34,7 +37,7 @@ package sketchproject.objects.world
 		private var statsCustomer:StatsCustomerDialog;
 		private var statsShop:StatsShopDialog;
 		private var statsTrend:StatsTrendDialog;
-		
+
 		public var clock:Clock;
 		private var statsContainer:Sprite;
 		private var statsBackground:Image;
@@ -249,18 +252,22 @@ package sketchproject.objects.world
 			clock.y = 440.55 + clock.height * 0.5 + 10;
 			statsContainer.addChild(clock);
 
-
 			opening = int(Data.schedule[DayCounter.numberDayWeek()][0]);
 			closing = int(Data.schedule[DayCounter.numberDayWeek()][1]);
 			openingDiscLimit = opening + 2;
 			closingDiscLimit = closing - 2;
-			clock.hour = 3;
+			clock.hour = 5;
 
 			addEventListener(TouchEvent.TOUCH, onStatsTouched);
 
 			hideStats();
 		}
 
+		/**
+		 * Show and hide game stats and catch touch on button stats dialog.
+		 *
+		 * @param touch
+		 */
 		private function onStatsTouched(touch:TouchEvent):void
 		{
 			if (touch.getTouch(statsContainer, TouchPhase.HOVER) || touch.getTouch(statsContainer, TouchPhase.BEGAN) || touch.getTouch(statsContainer, TouchPhase.ENDED) || touch.getTouch(statsContainer, TouchPhase.MOVED))
@@ -291,11 +298,10 @@ package sketchproject.objects.world
 			{
 				statsCustomer.openDialog();
 			}
-
 		}
 
 		/**
-		 * 
+		 * Show this stats and move outside the screen.
 		 */
 		public function showStats():void
 		{
@@ -305,7 +311,7 @@ package sketchproject.objects.world
 		}
 
 		/**
-		 * 
+		 * Hide this stats and move in properly position.
 		 */
 		public function hideStats():void
 		{
@@ -314,7 +320,13 @@ package sketchproject.objects.world
 			panelLabel.visible = true;
 		}
 
+		private var lastA:int = 0;
+		private var lastB:int = 0;
+		private var lastC:int = 0;
 
+		/**
+		 * Update the clock ticks and animation.
+		 */
 		override public function update():void
 		{
 			delayClockTick++;
@@ -324,13 +336,16 @@ package sketchproject.objects.world
 			{
 				clock.update();
 
+				statsSales.update();
+
 				if (!checkOpen && clock.hour == opening)
 				{
 					checkOpen = true;
 					trace("open shop at " + opening);
 					if (Data.discountFirst)
 					{
-						trace("opening with discount for 2 hours until " + openingDiscLimit);
+						trace("opening with discount 5% for 2 hours until " + openingDiscLimit);
+							// cut the opening price
 					}
 					else
 					{
@@ -342,9 +357,10 @@ package sketchproject.objects.world
 
 				if (!checkClose && clock.hour == closing)
 				{
-					checkOpen = true;
+					checkClose = true;
 					trace("closing discount ended");
 					trace("close shop at " + closing);
+					// restore the closing price
 					dispatchEventWith(SHOP_CLOSE);
 				}
 
@@ -352,6 +368,7 @@ package sketchproject.objects.world
 				{
 					checkOpeningDiscount = true;
 					trace("opening discount ended");
+						// restore the opening price
 				}
 
 				if (!checkClosingDiscount && clock.hour == closingDiscLimit)
@@ -359,17 +376,18 @@ package sketchproject.objects.world
 					checkClosingDiscount = true;
 					if (Data.discountLast)
 					{
-						trace("closing with discount for 2 hours until " + closingDiscLimit);
+						trace("closing with discount 10% for 2 hours from " + closingDiscLimit + " until closed");
+							// cut the closing price
 					}
 					else
 					{
 						trace("closing without discount");
-						checkClosingDiscount = true;
 					}
 				}
 
 				delayClockTick = 0;
 			}
+
 			if (delayGraph == 50)
 			{
 				lastX = 599.2;
@@ -377,48 +395,67 @@ package sketchproject.objects.world
 				lastY2 = 454.3 + 62;
 				lastY3 = 454.3 + 62;
 
-				var a:int = Math.ceil(Math.random() * 100);
-				var b:int = Math.ceil(Math.random() * (100 - a));
-				var c:int = 100 - (a + b);
+				// change with real marketplace
+				var a:int = Shop(WorldManager.instance.listShop[0]).marketshare; //Math.ceil(Math.random() * 100);
+				var c:int = Shop(WorldManager.instance.listShop[1]).marketshare; //Math.ceil(Math.random() * (100 - a));
+				var b:int = Shop(WorldManager.instance.listShop[2]).marketshare; //100 - (a + b);
 
-				marketShare.push(new Array(a, b, c));
-
-				if (marketShare.length > 10)
+				if (lastA != a || lastB != b || lastC != c)
 				{
-					lastY1 = 454.3 + 62 - (60 / 100 * marketShare[0][0]);
-					lastY2 = 454.3 + 62 - (60 / 100 * marketShare[0][1]);
-					lastY3 = 454.3 + 62 - (60 / 100 * marketShare[0][2]);
-					marketShare.shift();
-				}
 
-				lineBar.graphics.clear();
+					lastA = a;
+					lastB = b;
+					lastC = c;
 
-				for (var i:uint = 0, l:uint = marketShare.length; i < l; i++)
-				{
-					lineBar.graphics.lineStyle(1, 0xff5053);
-					lineBar.graphics.moveTo(lastX, lastY1);
-					lastY1 = 454.3 + 62 - (60 / 100 * marketShare[i][0]);
-					lineBar.graphics.lineTo(lastX + step, lastY1);
+					marketShare.push(new Array(a, b, c));
 
-					lineBar.graphics.lineStyle(1, 0x06cffd);
-					lineBar.graphics.moveTo(lastX, lastY2);
-					lastY2 = 454.3 + 62 - (60 / 100 * marketShare[i][1]);
-					lineBar.graphics.lineTo(lastX + step, lastY2);
+					if (marketShare.length > 10)
+					{
+						lastY1 = 454.3 + 62 - (60 / 100 * marketShare[0][0]);
+						lastY2 = 454.3 + 62 - (60 / 100 * marketShare[0][1]);
+						lastY3 = 454.3 + 62 - (60 / 100 * marketShare[0][2]);
+						marketShare.shift();
+					}
 
-					lineBar.graphics.lineStyle(1, 0x96ce00);
-					lineBar.graphics.moveTo(lastX, lastY3);
-					lastY3 = 454.3 + 62 - (60 / 100 * marketShare[i][2]);
-					lineBar.graphics.lineTo(lastX + step, lastY3);
+					lineBar.graphics.clear();
 
-					lastX += step;
+					for (var i:uint = 0, l:uint = marketShare.length; i < l; i++)
+					{
+						lineBar.graphics.lineStyle(3, 0xff5053);
+						lineBar.graphics.moveTo(lastX, lastY1);
+						lastY1 = 454.3 + 62 - (60 / 100 * marketShare[i][0]);
+						lineBar.graphics.lineTo(lastX + step, lastY1);
+
+						lineBar.graphics.lineStyle(3, 0x06cffd);
+						lineBar.graphics.moveTo(lastX, lastY2);
+						lastY2 = 454.3 + 62 - (60 / 100 * marketShare[i][1]);
+						lineBar.graphics.lineTo(lastX + step, lastY2);
+
+						lineBar.graphics.lineStyle(3, 0x96ce00);
+						lineBar.graphics.moveTo(lastX, lastY3);
+						lastY3 = 454.3 + 62 - (60 / 100 * marketShare[i][2]);
+						lineBar.graphics.lineTo(lastX + step, lastY3);
+
+						lastX += step;
+					}
 				}
 
 				delayGraph = 0;
 			}
 
 			super.update();
+		}
 
-
+		/**
+		 * Destroy all stats resources.
+		 */
+		public override function destroy():void
+		{
+			statsCustomer.removeFromParent();
+			statsSales.removeFromParent();
+			statsShop.removeFromParent();
+			statsTrend.removeFromParent();
+			super.destroy();
 		}
 	}
 }

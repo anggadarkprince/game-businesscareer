@@ -37,7 +37,7 @@ package sketchproject.states
 		
 		public function toString() : String 
 		{
-			return "sketchproject.modules.states.GameoverState";
+			return "sketchproject.states.GameoverState";
 		}
 	}
 }

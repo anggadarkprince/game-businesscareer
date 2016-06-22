@@ -72,9 +72,9 @@ package sketchproject.states
 		public function initializingSimulation():void
 		{
 			Data.firstCostOfGood = 0;
-			for(var i:int = 0; i<Data.inventory.length;i++)
+			for(var i:int = 0; i<Data.material.length;i++)
 			{
-				Data.firstCostOfGood += Data.inventory[i].pma_stock * Data.inventory[i].mtr_price;
+				Data.firstCostOfGood += Data.material[i].pma_stock * Data.material[i].mtr_price;
 			}
 			
 			finishingSimulation();
@@ -95,10 +95,10 @@ package sketchproject.states
 			// check inventory left today
 			var inventoryLeft:int = 0;
 			Data.lastCostOfGood = 0;
-			for(var i:int = 0; i<Data.inventory.length;i++)
+			for(var i:int = 0; i<Data.material.length;i++)
 			{
-				inventoryLeft+= Data.inventory[i].pma_stock;
-				Data.lastCostOfGood += Data.inventory[i].pma_stock * Data.inventory[i].mtr_price;
+				inventoryLeft+= Data.material[i].pma_stock;
+				Data.lastCostOfGood += Data.material[i].pma_stock * Data.material[i].mtr_price;
 			}
 			Data.inventoryHistory.push(inventoryLeft);
 			trace("inventory left "+inventoryLeft);

@@ -237,9 +237,9 @@ package sketchproject.objects.dialog
 			{
 				var isItemExist:Boolean = false;
 				var index:int = -1;
-				for (var i:uint = 0; i < Data.inventory.length; i++)
+				for (var i:uint = 0; i < Data.material.length; i++)
 				{
-					if (Data.inventory[i].mtr_id == supply.materialId && Data.inventory[i].pma_expired_remaining == supply.expiredRemaining)
+					if (Data.material[i].mtr_id == supply.materialId && Data.material[i].pma_expired_remaining == supply.expiredRemaining)
 					{
 						isItemExist = true;
 						index = i;
@@ -250,11 +250,11 @@ package sketchproject.objects.dialog
 				var gameObject:Object = new Object();
 				if (isItemExist)
 				{
-					var newStock:int = int(Data.inventory[index].pma_stock) + int(total);
+					var newStock:int = int(Data.material[index].pma_stock) + int(total);
 					
 					gameObject.token = Data.key;
 					gameObject.action = "update";
-					gameObject.id = Data.inventory[index].pma_id;
+					gameObject.id = Data.material[index].pma_id;
 					gameObject.stock = newStock;
 					gameObject.expired = supply.expiredRemaining;
 				}
@@ -276,7 +276,7 @@ package sketchproject.objects.dialog
 					var playerMaterial:String = server.received.player_material_var;
 
 					if (JSON.parse(playerMaterial) as Array != null)
-						Data.inventory = JSON.parse(playerMaterial) as Array;
+						Data.material = JSON.parse(playerMaterial) as Array;
 
 					supply.quantityRemaining -= total;
 

@@ -393,7 +393,7 @@ package sketchproject.objects.business
 			baseTimeline.y = -47.9;
 			addChild(baseTimeline);
 
-			closeTuesday = new TextField(50, 30, "23", Assets.getFont(Assets.FONT_CORegular).fontName, 15, 0xA92922);
+			closeTuesday = new TextField(50, 30, "23", Assets.getFont(Assets.FONT_SSBOLD).fontName, 15, 0xA92922);
 			closeTuesday.pivotX = closeTuesday.width * 0.5;
 			closeTuesday.pivotY = closeTuesday.height * 0.5;
 			closeTuesday.x = 385.6;
@@ -424,7 +424,7 @@ package sketchproject.objects.business
 			baseTimeline.y = -22.7;
 			addChild(baseTimeline);
 
-			openWednesday = new TextField(50, 30, "23", Assets.getFont(Assets.FONT_CORegular).fontName, 15, 0xA92922);
+			openWednesday = new TextField(50, 30, "23", Assets.getFont(Assets.FONT_SSBOLD).fontName, 15, 0xA92922);
 			openWednesday.pivotX = openWednesday.width * 0.5;
 			openWednesday.pivotY = openWednesday.height * 0.5;
 			openWednesday.x = -244.4;

@@ -381,10 +381,10 @@ package sketchproject.objects.product
 
 			totalItem = 0;
 			inventory = new Array();
-			for (var j:int = 0; j < Data.inventory.length; j++)
+			for (var j:int = 0; j < Data.material.length; j++)
 			{
 				totalItem++;
-				inventory.push(Data.inventory[j]);
+				inventory.push(Data.material[j]);
 			}
 
 			totalPage = Math.ceil(totalItem / itemPerPage);

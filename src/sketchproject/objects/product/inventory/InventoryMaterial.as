@@ -135,7 +135,7 @@ package sketchproject.objects.product.inventory
 				gameObject.token = Data.key;
 				gameObject.material_id = material.recordId;
 
-				totalThrowed += Data.inventory[material.recordIndex].mtr_price * Data.inventory[material.recordIndex].pma_stock;
+				totalThrowed += Data.material[material.recordIndex].mtr_price * Data.material[material.recordIndex].pma_stock;
 
 				server = new ServerManager("inventory/remove_material", gameObject);
 				server.addEventListener(ServerManager.READY, function(event:flash.events.Event):void
@@ -204,10 +204,10 @@ package sketchproject.objects.product.inventory
 
 			totalItem = 0;
 			inventory = new Array();
-			for (var j:int = 0; j < Data.inventory.length; j++)
+			for (var j:int = 0; j < Data.material.length; j++)
 			{
 				totalItem++;
-				inventory.push(Data.inventory[j]);
+				inventory.push(Data.material[j]);
 			}
 
 			totalPage = Math.ceil(totalItem / itemPerPage);
@@ -252,11 +252,11 @@ package sketchproject.objects.product.inventory
 		 */
 		private function removeItem():void
 		{
-			for (var i:int = Data.inventory.length - 1; i >= 0; i--)
+			for (var i:int = Data.material.length - 1; i >= 0; i--)
 			{
-				if (Data.inventory[i].pma_id == material.recordId)
+				if (Data.material[i].pma_id == material.recordId)
 				{
-					Data.inventory.splice(i, 1);
+					Data.material.splice(i, 1);
 				}
 			}
 			update();

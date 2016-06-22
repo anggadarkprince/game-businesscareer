@@ -60,13 +60,13 @@ package sketchproject.objects.world
 		 */
 		public function update():void
 		{
-			//this.cSeconds++;
+			this.cSeconds++;
 			this.cMinutes += 2;
 
 			if (this.cSeconds >= 60)
 			{
 				this.cSeconds = 0;
-				//this.cMinutes++;
+				this.cMinutes++;
 			}
 			if (this.cMinutes >= 60)
 			{

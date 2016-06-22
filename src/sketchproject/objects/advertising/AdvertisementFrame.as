@@ -3,6 +3,7 @@ package sketchproject.objects.advertising
 	import sketchproject.core.Assets;
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
+	import sketchproject.managers.DataManager;
 	import sketchproject.modules.Agent;
 	import sketchproject.modules.AgentGenerator;
 	import sketchproject.objects.adapter.AdvertisementAdapter;
@@ -41,6 +42,7 @@ package sketchproject.objects.advertising
 		private var billboardRate:TextField;
 
 		private var agentGenerator:AgentGenerator;
+		private var save:DataManager;
 
 		private var predictAgent:Array;
 
@@ -52,6 +54,7 @@ package sketchproject.objects.advertising
 			super();
 
 			agentGenerator = new AgentGenerator();
+			save = new DataManager();
 
 			predictAgent = new Array();
 
@@ -240,6 +243,7 @@ package sketchproject.objects.advertising
 				totalCost += AdvertisementAdapter(advertisements[i]).getCost();
 			}
 			cost.text = "Total cost per day IDR " + ValueFormatter.format(totalCost);
+			save.saveGameData();
 		}
 
 		/**

@@ -74,7 +74,7 @@ package sketchproject.managers
 			gameObject.valueEmotion = Data.valueEmotion;
 
 			gameObject.dataEmployee = JSON.stringify(Data.employee);
-			gameObject.dataMaterial = JSON.stringify(Data.inventory);
+			gameObject.dataMaterial = JSON.stringify(Data.material);
 			gameObject.dataAsset = JSON.stringify(Data.asset);
 			gameObject.dataProduct = JSON.stringify(Data.product);
 
@@ -235,6 +235,7 @@ package sketchproject.managers
 			var simulation:String = gameServer.received.simulation_var;
 			var workHistory:String = gameServer.received.work_history_var;
 			var workTotal:String = gameServer.received.work_total_var;
+			var star:String = gameServer.received.star;
 
 			var generalData:Array = JSON.parse(game) as Array;
 			if (JSON.parse(game) as Object != null && generalData == null)
@@ -291,7 +292,7 @@ package sketchproject.managers
 				Config.material = JSON.parse(material) as Array;
 
 			if (JSON.parse(playerMaterial) as Array != null)
-				Data.inventory = JSON.parse(playerMaterial) as Array;
+				Data.material = JSON.parse(playerMaterial) as Array;
 
 			if (JSON.parse(asset) as Array != null)
 				Config.asset = JSON.parse(asset) as Array;
@@ -367,6 +368,8 @@ package sketchproject.managers
 					Data.workTotal = 0;
 				}
 			}
+			
+			Data.stars = int(star);
 
 			dispatchEvent(new Event(ServerManager.READY));
 		}
@@ -438,7 +441,7 @@ package sketchproject.managers
 			trace("---------------------------------------");
 
 			trace("employee", JSON.stringify(Data.employee));
-			trace("inventory", JSON.stringify(Data.inventory));
+			trace("inventory", JSON.stringify(Data.material));
 			trace("asset", JSON.stringify(Data.asset));
 			trace("product", JSON.stringify(Data.product));
 			trace("achievement", JSON.stringify(Data.achievement));

@@ -312,9 +312,9 @@ package sketchproject.managers
 						}
 						break;
 					case TaskManager.TASK_ORDER:
-						for (var j:int = 0; j < Data.inventory.length; j++)
+						for (var j:int = 0; j < Data.material.length; j++)
 						{
-							if (TaskOrder(tasks[i]).checkTask(Data.inventory[j].mtr_id, Data.inventory[j].pma_stock))
+							if (TaskOrder(tasks[i]).checkTask(Data.material[j].mtr_id, Data.material[j].pma_stock))
 							{
 								TaskOrder(tasks[i]).taskComplete();
 							}

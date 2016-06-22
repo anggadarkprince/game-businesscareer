@@ -31,7 +31,8 @@ package sketchproject.objects.employee
 	import starling.utils.VAlign;
 
 	/**
-	 *
+	 * Employee has been hiring.
+	 * 
 	 * @author Angga
 	 */
 	public class EmployeeFrame extends Sprite
@@ -73,7 +74,7 @@ package sketchproject.objects.employee
 		private var fireworkManager:FireworkManager;
 
 		/**
-		 * Employee has been hiring.
+		 * Default constructor of EmployeeFrame.
 		 */
 		public function EmployeeFrame()
 		{

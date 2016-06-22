@@ -63,14 +63,14 @@ package sketchproject.objects.product.inventory
 				var totalMatch:int = 0;
 				for (var a:int = 0; a < Data.productMaterial[i].material.length; a++)
 				{
-					for (var b:int = 0; b < Data.inventory.length; b++)
+					for (var b:int = 0; b < Data.material.length; b++)
 					{
-						if (Data.productMaterial[i].material[a] == Data.inventory[b].mtr_id)
+						if (Data.productMaterial[i].material[a] == Data.material[b].mtr_id)
 						{
 							totalMatch++;
-							if (Data.inventory[b].pma_stock < min)
+							if (Data.material[b].pma_stock < min)
 							{
-								min = Data.inventory[b].pma_stock;
+								min = Data.material[b].pma_stock;
 							}
 						}
 					}

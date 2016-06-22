@@ -35,7 +35,7 @@ package sketchproject.core
 		
 		public static var stars:uint 				= 1;
 		public static var worldRank:int 			= 32;
-				
+
 		/** shop, logo & advisor */
 		public static var shop:String 				= "Djanggo Cafe";
 		public static var logo:String 				= "logo2";
@@ -67,6 +67,9 @@ package sketchproject.core
 		public static var workAvg:int 				= 0;
 		public static var workTotal:int 			= 0;
 		public static var workHistory:Array			= new Array();
+		public static var marketshare:int 			= 0;
+		public static var transactionAllShop:int	= 0;
+		public static var transaction:int			= 0;
 		
 		/** cost of good */
 		public static var firstCostOfGood:Number 	= 0;
@@ -109,12 +112,21 @@ package sketchproject.core
 		public static var product:Array 			= new Array();
 		
 		/** player inventory **/
-		public static var inventory:Array 			= new Array();
+		public static var material:Array 			= new Array();
 		
 		/** player asset **/
 		public static var asset:Array 				= new Array();
 		
 		/** material product **/
 		public static var productMaterial:Array 	= new Array();
+		
+		public static var soldFood1:int				= 0;		
+		public static var soldFood2:int 			= 0;
+		public static var soldFood3:int 			= 0;
+		public static var soldDrink1:int 			= 0;
+		public static var soldDrink2:int 			= 0;
+		
+		public static var open:int 					= 0;
+		public static var close:int					= 0;
 	}
 }

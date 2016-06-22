@@ -380,7 +380,7 @@ package sketchproject.objects.dialog
 
 			for (var k:int = startItem; k < endItem; k++)
 			{
-				var item:SupplyAdapter = new SupplyAdapter(k, inventory[k].mtr_id, inventory[k].mtr_item, inventory[k].mtr_atlas, inventory[k].mtr_price, inventory[k].mtr_expired_at, Math.random() * 300 + 50);
+				var item:SupplyAdapter = new SupplyAdapter(k, inventory[k].mtr_id, inventory[k].mtr_item, inventory[k].mtr_atlas, inventory[k].mtr_price, inventory[k].mtr_expired_at, Math.random() * 200 + 300);
 				var counter:int = (k - (itemPerPage * (currentPage - 1)));
 				item.x = (counter % 2) * 290;
 				item.y = Math.floor(counter / 2) * 117;

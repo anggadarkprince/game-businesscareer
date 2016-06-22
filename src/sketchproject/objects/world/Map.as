@@ -27,9 +27,6 @@ package sketchproject.objects.world
 	import starling.display.MovieClip;
 	import starling.display.Quad;
 	import starling.display.Sprite;
-	import starling.events.Touch;
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
@@ -139,8 +136,8 @@ package sketchproject.objects.world
 			atmosphere.visible = false;
 			addChild(atmosphere);
 			
+			fireworkManager = FireworkManager.getInstance(levelOverlay);
 			worldManager = new WorldManager(this, isSimulationStarted);
-			fireworkManager = new FireworkManager(levelOverlay);
 			coinManager = new RewardManager(RewardManager.REWARD_COIN, RewardManager.SPAWN_ONCE, false, levelWorld);
 			
 			// add overlay sprite
@@ -190,7 +187,9 @@ package sketchproject.objects.world
 			}
 
 			if(isSimulationStarted){
-				//addEventLabel(Data.event);
+				if(Data.event != null){
+					addEventLabel(Data.event);
+				}
 				addShopLabel("Your Shop", worldManager.listShop[0].districtCoordinate, 200, 50);
 				addShopLabel("Competitor Shop 1", worldManager.listShop[1].districtCoordinate, 200, 100);
 				addShopLabel("Competitor Shop 2", worldManager.listShop[2].districtCoordinate, 200, 100);
@@ -199,8 +198,6 @@ package sketchproject.objects.world
 				radiance.visible = false;
 				atmosphere.visible = false;
 			}
-			
-			levelBackground.addEventListener(TouchEvent.TOUCH, onWorldTouched);
 		}
 		
 		/**
@@ -523,47 +520,9 @@ package sketchproject.objects.world
 				}
 				else
 				{
-					//eventLabels[i].label.visible = false;
+					eventLabels[i].label.visible = false;
 				}
 			}
-		}
-
-		/**
-		 * Unecessary event listener to check the coordinate of game map.
-		 *
-		 * @param e
-		 */
-		private function onWorldTouched(e:TouchEvent):void
-		{
-			var touch:Touch = e.getTouch(stage);
-			
-			if (touch != null && touch.phase == TouchPhase.ENDED)
-			{
-				var position:Point = touch.getLocation(levelBackground);
-				
-				var clickPt:Point = new Point();
-				clickPt.x = position.x;
-				clickPt.y = position.y;
-				clickPt = IsoHelper.isoTo2D(clickPt);
-				clickPt.x -= tileHeight / 2;
-				clickPt.y += tileHeight / 2;
-				clickPt = IsoHelper.getTileCoordinates(clickPt, tileHeight);
-				
-				// trace("[Touch] " + position, "coordinate " + clickPt);
-				
-				if (clickPt.x < 0 || clickPt.y < 0 || clickPt.x > levelData.length - 1 || clickPt.x > levelData[0].length - 1)
-				{
-					// trace("[Touch] invalid");
-					//we have clicked outside
-					return;
-				}
-				if (levelData[clickPt.y][clickPt.x] != 0)
-				{
-					// trace("[Touch] wall");
-					//we clicked on a wall
-					return;
-				}
-			}
-		}
+		}		
 	}
 }

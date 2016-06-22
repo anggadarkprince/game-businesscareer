@@ -7,6 +7,7 @@ package sketchproject.objects.particle
 
 	/**
 	 * Haze sprite particle, contains information position and texture.
+	 * 
 	 * @author Angga
 	 */
 	public class HazeParticle extends Sprite

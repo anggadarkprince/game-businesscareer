@@ -17,6 +17,7 @@ package sketchproject.managers
 		 */
 		public function AchievementManager()
 		{
+			Config.achieved = new Array();
 		}
 
 		/**

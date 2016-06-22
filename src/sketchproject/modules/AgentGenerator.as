@@ -1008,7 +1008,6 @@ package sketchproject.modules
 			}
 		}
 
-
 		/**
 		 * Generate number of consumption probability.
 		 *
@@ -1111,7 +1110,7 @@ package sketchproject.modules
 		 */
 		public function generateFreeman(agentList:Array, population:int, map:Map):void
 		{
-			// generate 20% of total population for freeman
+			// generate 10% of total population for freeman
 			var generate:int = Math.round(10 / 100 * population);
 			var freeman:Agent;
 			var i:int = agentList.length;
@@ -1166,7 +1165,7 @@ package sketchproject.modules
 			var price:Object = new Object();
 			price.food1 = 15;
 			price.food2 = 15;
-			price.food3 = 15;
+			price.food3 = 14;
 			price.drink1 = 10;
 			price.drink2 = 15;
 			shop.price = price;
@@ -1174,10 +1173,10 @@ package sketchproject.modules
 			// quality
 			var quality:Object = new Object();
 			var quality1:int = 6;
-			var quality2:int = 4;
+			var quality2:int = 6;
 			var quality3:int = 7;
 			var quality4:int = 8;
-			var quality5:int = 5;
+			var quality5:int = 7;
 
 			quality.food1 = [quality1, quality1, quality1];
 			quality.food2 = [quality2, quality2];
@@ -1259,21 +1258,21 @@ package sketchproject.modules
 			
 			// adver
 			var adver:Object = new Object();
-			adver.tv = 10;
+			adver.tv = 8;
 			adver.radio = 5;
 			adver.newspaper = 7;
-			adver.internet = 2;
+			adver.internet = 5;
 			adver.event = 5;
 			adver.billboard = 10;
 			shop.advertising = adver;
 			
 			// price
 			var price:Object = new Object();
-			price.food1 = 20;
+			price.food1 = 17;
 			price.food2 = 15;
 			price.food3 = 17;
-			price.drink1 = 10;
-			price.drink2 = 15;
+			price.drink1 = 12;
+			price.drink2 = 16;
 			shop.price = price;
 			
 			// quality
@@ -1281,7 +1280,7 @@ package sketchproject.modules
 			var quality1:int = 6;
 			var quality2:int = 4;
 			var quality3:int = 7;
-			var quality4:int = 8;
+			var quality4:int = 7;
 			var quality5:int = 5;
 			
 			quality.food1 = [quality1, quality1, quality1];
@@ -1367,27 +1366,27 @@ package sketchproject.modules
 			adver.tv = 10;
 			adver.radio = 5;
 			adver.newspaper = 7;
-			adver.internet = 2;
-			adver.event = 5;
+			adver.internet = 8;
+			adver.event = 6;
 			adver.billboard = 10;
 			shop.advertising = adver;
 			
 			// price
 			var price:Object = new Object();
-			price.food1 = 20;
+			price.food1 = 15;
 			price.food2 = 15;
-			price.food3 = 17;
+			price.food3 = 15;
 			price.drink1 = 10;
-			price.drink2 = 15;
+			price.drink2 = 14;
 			shop.price = price;
 			
 			// quality
 			var quality:Object = new Object();
 			var quality1:int = 6;
-			var quality2:int = 4;
+			var quality2:int = 8;
 			var quality3:int = 7;
 			var quality4:int = 8;
-			var quality5:int = 5;
+			var quality5:int = 6;
 			
 			quality.food1 = [quality1, quality1, quality1];
 			quality.food2 = [quality2, quality2];
